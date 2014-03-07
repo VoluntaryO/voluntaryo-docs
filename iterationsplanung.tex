@@ -1,0 +1,50 @@
+\documentclass{template/document}
+\input{template/document.sty}
+
+\newcommand\documentTitle{Iterationsplanung Projekt VoluntaryO}
+\newcommand\documentAuthorA{Dominik Freier}
+\newcommand\documentAuthorB{Nhat-Nam Le}
+\newcommand\documentAuthorC{Philipp Meier}
+\newcommand\documentAuthorD{Robin Bader}
+\newcommand\documentSubject{Software Engineering 2 - Projekt}
+
+\makeindex
+
+\begin{document}
+ 
+    \input{template/title}
+
+    \tableofcontents
+    \newpage
+
+    \section*{Änderungshistorie}
+    \begin{table}[H]
+        \tablestyle
+        \tablealtcolored
+        \begin{tabularx}{\textwidth}{l l X r}
+        \tableheadcolor
+            \tablehead Version & 
+            \tablehead Datum & 
+            \tablehead Änderung & 
+            \tablehead Person \\  
+        \tablebody
+            v1.0 & 07.03.2014 & Initialisierung & p1meier \tabularnewline
+        \tableend
+        \end{tabularx} 
+    \end{table}
+    \newpage
+
+
+    \input{content/iterationsplanung/einfuehrung}
+    \input{content/iterationsplanung/elaboration_e1}
+    \input{content/iterationsplanung/elaboration_e2}
+    \input{content/iterationsplanung/construction_c1}
+    \input{content/iterationsplanung/construction_c2}
+    \input{content/iterationsplanung/construction_c3}
+    \input{content/iterationsplanung/transition_t1}
+	
+
+    % \input{template/playground}
+    
+    
+\end{document}
