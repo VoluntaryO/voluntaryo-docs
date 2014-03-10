@@ -16,6 +16,9 @@
             \textbf{Use Case Name} &
                 UC01: Benutzer anmelden/abmelden
                 \tabularnewline
+            \textbf{Ref. Primäre Funktionen} &
+                \textit{-}
+                \tabularnewline
             \textbf{Zusammenfassung} &
                 Benutzer (User, Planer, Admin ) können sich authentifizieren. Danach erhalten sie Zugang zur Applikation, entsprechend ihren Berechtigungen (Autorisierung).
                 \tabularnewline
@@ -39,6 +42,9 @@
             \tablebody
             \textbf{Use Case Name} &
                 UC02: Für Helfereinsatz eintragen
+                \tabularnewline
+            \textbf{Ref. Primäre Funktionen} &
+                \textit{F08}, \textit{F09}
                 \tabularnewline
             \textbf{Zusammenfassung} &
                 Für jedes Event gibt es vorgegeben Helfereinsätze ( = „Tätigkeiten“). Benutzer können sich für diese Tätigkeiten eintragen und auch wieder abmelden.
@@ -64,6 +70,9 @@
             \textbf{Use Case Name} &
                 UC03: Helfereinsätze anzeigen 
                 \tabularnewline
+            \textbf{Ref. Primäre Funktionen} &
+                \textit{F10}
+                \tabularnewline
             \textbf{Zusammenfassung} &
                 Benutzer kann sich seine Helfereinsätze anzeigen lassen.
                 \tabularnewline
@@ -87,6 +96,9 @@
             \tablebody
             \textbf{Use Case Name} &
                 UC04: Helfereinsatz Details anzeigen 
+                \tabularnewline
+            \textbf{Ref. Primäre Funktionen} &
+                \textit{F08}
                 \tabularnewline
             \textbf{Zusammenfassung} &
                 -
@@ -112,11 +124,14 @@
             \textbf{Use Case Name} &
                 UC05: Export der Termine (optional) 
                 \tabularnewline
+            \textbf{Ref. Primäre Funktionen} &
+                \textit{F31}
+                \tabularnewline
             \textbf{Zusammenfassung} &
                 Helfereinsätze als Termine exportieren.
                 \tabularnewline
             \textbf{Main Success Szenario} &
-                Benutzer wählt Helfereinsatz aus. System erzeugt Kalendereintrag mit Informationen zum Helfereinsatz in Standardformat und bietet es zum Download an. Benutzer lädt Datei herunter.
+                Der Benutzer exportiert die Übersicht seiner Helfereinsätze in ein Kalenderformat (bspw. iCal).
                 \tabularnewline
                 \textbf{Actors} &
                 User
@@ -135,6 +150,9 @@
             \tablebody
             \textbf{Use Case Name} &
                 UC06: Events verwalten CRUD 
+                \tabularnewline
+            \textbf{Ref. Primäre Funktionen} &
+                \textit{F04}
                 \tabularnewline
             \textbf{Zusammenfassung} &
                 Der Planer ist zuständig für die Verwaltung von Events. Ein Event ist die Grundlage für die einzelnen Helfereinsätze. Neue Events sollen hinzugefügt werden können und diese auch bearbeitet oder entfernt werden können.
@@ -160,6 +178,9 @@
             \textbf{Use Case Name} &
                 UC07: Events importieren
                 \tabularnewline
+            \textbf{Ref. Primäre Funktionen} &
+                \textit{F03}
+                \tabularnewline
             \textbf{Zusammenfassung} &
                 Falls in einem externen System neue Events vorhanden sind, soll der Planer die Möglichkeit haben diese in das System zu importieren. Die Events werden dann über einen Webservice geladen.
                 \tabularnewline
@@ -183,6 +204,9 @@
             \tablebody
             \textbf{Use Case Name} &
                 UC08: Einsätze für Event verwalten CRUD
+                \tabularnewline
+            \textbf{Ref. Primäre Funktionen} &
+                \textit{F01}, \textit{F02}
                 \tabularnewline
             \textbf{Zusammenfassung} &
                 Jeder Event hat mehrere Helfereinsätze. Diese müssen vom Planer verwaltet werden.
@@ -208,6 +232,9 @@
             \textbf{Use Case Name} &
                 UC09: Benutzer verwalten CRUD
                 \tabularnewline
+            \textbf{Ref. Primäre Funktionen} &
+                \textit{F06}
+                \tabularnewline
             \textbf{Zusammenfassung} &
                 Die verschiedenen Benutzer sollen vom Admin verwaltet werden. Neue Benutzer sollen hinzugefügt werden können oder Passwörter geändert werden.
                 \tabularnewline
@@ -231,6 +258,9 @@
             \tablebody
             \textbf{Use Case Name} &
                 UC10: Benutzer importieren
+                \tabularnewline
+            \textbf{Ref. Primäre Funktionen} &
+                \textit{F05}
                 \tabularnewline
             \textbf{Zusammenfassung} &
                 Die Benutzer sollen neben der manuellen Erstellung auch aus einem externen System importiert werden können. Diese Benutzer sollen über einen Webservice abgerufen werden können.
@@ -256,11 +286,14 @@
             \textbf{Use Case Name} &
                 UC11: Erinnerungen verschicken
                 \tabularnewline
+            \textbf{Ref. Primäre Funktionen} &
+                \textit{F11}
+                \tabularnewline
             \textbf{Zusammenfassung} &
-                Für jeden Event sollen an vordefinierten Zeitpunkten Erinnerungen an alle angemeldeten User versendet werden können.
+                Für jeden Event sollen an vordefinierten Zeitpunkten Erinnerungen an alle angemeldeten Benutzer versendet werden können.
                 \tabularnewline
             \textbf{Main Success Szenario} &
-                Es wird automatisch eine Erinnerung an jeden im Event angemeldeten User gesendet.
+                Es wird automatisch eine Erinnerung an jeden im Event angemeldeten Benutzer gesendet.
                 \tabularnewline
                 \textbf{Actors} &
                 Timer
