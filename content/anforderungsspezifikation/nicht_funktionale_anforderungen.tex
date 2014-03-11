@@ -8,23 +8,32 @@ Effizienz, Änderbarkeit,Übertragbarkeit)
 		\item Überprüfbar formuliert
 	\end{itemize}
 	
+	\href{http://de.wikipedia.org/wiki/ISO/IEC_9126}{ISO 9126}
 	\section{Qualitätsmerkmale}
 	Inhalt dieses Abschnittes ist es, nicht-funktionale Anforderungen an dieses Projekt festzuhalten.Für das Qualitätsmodell verwenden wir die Software-Qualitätsmerkmale der Norm ISO 9126.
 	\subsection{Funktionalität(functionality)}
+	Die Fähigkeit des Softwareprodukts, ausdrücklich genannte oder implizite Anforderungen zu erfüllen, die für den Gebrauch der Software unter spezifizierten Bedingungen notwendig sind.
 	\begin{table}[H]
     	\tablestyle
     	\tablealtcolored
     	\begin{tabularx}{\textwidth}{l X l}
         	\tablebody
-        	\textbf{Angemessenheit (suitability)} & <text>
+        	\textbf{Angemessenheit (suitability)} & \textcolor{red}{<Die Fähigkeit des Softwareprodukts, für die spezifizierten Aufgaben und Ziele des Benutzers einen angemessenen Funktionsumfang zur Verfügung zu stellen. >}
         	\tabularnewline
-          	\textbf{Richtigkeit (accuracy)} & <text>
+          	\textbf{Richtigkeit (accuracy)} & Zeitlich können die Helfereinsätze im Viertelstundenraster gesetzt werden. Mitglieder können sich nicht in Helferinsätze einschreiben, wenn zu diesem Zeitpunkt bereits ein eingeschriebener Helfereinsatz existiert.
             \tabularnewline
-        	\textbf{Interoperabilität (interoperability)} & <text>
+        	\textbf{Interoperabilität (interoperability)} & Das Projekt VolutaryO stellt eine für den Benutzer plattformunabhängige Weboberfläche dar. Unterschiede in der Darstellung können lediglich bei der Verwendung von unterschiedlichen Webbrowsern auftreten.
             \tabularnewline
-        	\textbf{Ordnungsmässigkeit(compliance)} & <text>
+        	\textbf{Ordnungsmässigkeit(compliance)} & \textcolor{red}{<Die Eigenschaft der Software, Normen und Vereinbarungen bezüglich des Qualitätsmerkmals „Funktionalität“ zu erfüllen.>}
             \tabularnewline
-         	\textbf{Sicherheit (security)} & <text>
+         	\textbf{Sicherheit (security)} & Neben der Aufteilung von verschiedenen Benutzerrollen (Admin, Planer, Mitglied), erhält jedes Mitglied seinen eigenen passwortgeschützten Benutzeraccount. Rechte der folgenden Benutzerrollen:
+     
+     
+         		\begin{itemize}
+					\item \textbf{Admin:} 	Besitzt alle Rechte, verwaltet überwiegend Benutzermutationen
+					\item \textbf{Planer:} 	Verwaltet die Events und kann ebenfalls Helfereinsätze konfigurieren.		
+					\item \textbf{Mitglied:}	Schreibt sich in die vorgegebenen Helfereinsätze einen Events ein.
+				\end{itemize}
             \tabularnewline
         	\tableend
     	\end{tabularx}
@@ -33,16 +42,17 @@ Effizienz, Änderbarkeit,Übertragbarkeit)
 	
 	
 	\subsection{Zuverlässigkeit (reliability)}
+	Die Fähigkeit des Softwareprodukts, ein bestimmtes Leistungsniveau unter definierten Bedingungen über einen definierten Zeitraum aufrecht zu erhalten.
 	\begin{table}[H]
     	\tablestyle
     	\tablealtcolored
     	\begin{tabularx}{\textwidth}{l X l}
         	\tablebody
-        	\textbf{Reife (maturity)} & <text>
+        	\textbf{Reife (maturity)} & \textcolor{red}{<Die Fähigkeit des Softwareprodukts, Ausfälle Aufgrund von Fehlerzuständen in der Software zu vermeiden.>}
         	\tabularnewline
-          	\textbf{Fehlertoleranz (fault tolerance)} & <text>
+          	\textbf{Fehlertoleranz (fault tolerance)} & \textcolor{red}{<Die Fähigkeit des Softwareprodukts, ein bestimmtes Leistungsniveau im Falle von Fehlerzuständen oder Unvereinbarkeit mit der spezifizierten Schnittstelle aufrecht zu erhalten.>}
             \tabularnewline
-        	\textbf{Wiederherstellbarkeit (recoverability)} & <text>
+        	\textbf{Wiederherstellbarkeit (recoverability)} & Durch das tägliche Backup der Web-Applikation, kann der Zustand des Vortages schnell wiederhergestellt werden.
             \tabularnewline
         	\tableend
     	\end{tabularx}
@@ -51,6 +61,7 @@ Effizienz, Änderbarkeit,Übertragbarkeit)
 
 	
 	\subsection{Benutzbarkeit (usability)}
+	Benutzbarkeit bezieht sich darauf, dass die Software von bestimmten Nutzergruppen unter bestimmten Bedingungen verstanden, erlernt und benutzt werden kann und subsumiert folgende Untermerkmale:
 	\begin{table}[H]
     	\tablestyle
     	\tablealtcolored
@@ -60,7 +71,7 @@ Effizienz, Änderbarkeit,Übertragbarkeit)
         	\tabularnewline
           	\textbf{Erlernbarkeit (learnability)} & <text>
             \tabularnewline
-        	\textbf{Bedienbarkeit (operability)} & <text>
+        	\textbf{Bedienbarkeit (operability)} & Natürlich sollte 
             \tabularnewline
         	\tableend
     	\end{tabularx}
@@ -69,6 +80,7 @@ Effizienz, Änderbarkeit,Übertragbarkeit)
 
 	
 	\subsection{Effizienz (efficiency)}	
+	Die Fähigkeit des Softwareprodukts, ein bestimmtes Leistungsniveau in Relation zu den Ressourcen unter definierten Bedingungen zu erbringen. 
 	\begin{table}[H]
     	\tablestyle
     	\tablealtcolored
@@ -84,6 +96,7 @@ Effizienz, Änderbarkeit,Übertragbarkeit)
 	\end{table}
 
 	\subsection{Änderbarkeit (maintainability)}
+	Die Fähigkeit des Softwareprodukts, modifiziert zu werden. Modifikationen können Korrekturen, Verbesserungen oder Anpassungen der Software an Änderungen der Umgebung umfassen, sowie Änderungen der Anforderungen und der funktionalen Spezifikationen.
 	\begin{table}[H]
     	\tablestyle
     	\tablealtcolored
@@ -103,6 +116,7 @@ Effizienz, Änderbarkeit,Übertragbarkeit)
 	\end{table}
 	
 	\subsection{Übertragbarkeit (portability)}
+	Die Fähigkeit des Softwareprodukts, in eine andere Umgebung übertragen zu werden. Die Umgebung kann dabei sowohl die organisatorische Umgebung als auch die Hardware- oder Software-Umgebung sein.
 	\begin{table}[H]
     	\tablestyle
     	\tablealtcolored
@@ -128,7 +142,7 @@ Effizienz, Änderbarkeit,Übertragbarkeit)
 	<Anzahl Kundendatensätze>
 	<Anzahl gleichzeitige Benutzer>
 		
-	\section{Randbedingungen ()environment)}
+	\section{Randbedingungen (environment)}
 	<Einschränkungen bezüglich Realisierung: Programmiersprache, verw. Oracle DB-server>
 	<Achtung: keine unnötigen Einschränkungen>
 
