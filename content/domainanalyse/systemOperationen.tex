@@ -1,1 +1,54 @@
 \chapter{Systemoperationen}
+\section{Contract zu UC02: Für Helfereinsatz eintragen}
+	\begin{table}[H]
+    	\tablestyle
+    	\tablealtcolored
+    	\begin{tabularx}{\textwidth}{l X l}
+        	\tablebody
+        	\textbf{Operation} & LogonTask(User:User)
+        	\tabularnewline
+          	\textbf{Cross references} & -
+            \tabularnewline
+          	\textbf{Preconditions} & \begin{itemize}
+          	\item Event ist vorhanden
+          	\item User ist zum gleichen Zeitpunkt nicht bereits bei einem anderen Event angemeldet
+          	\item User erfüllt die Einsatzanforderungen wie beispielsweise: Alter
+          	\item User ist im System angemeldet
+          	\item Helfereinsatz ist noch nicht vergeben
+          	\end{itemize}
+            \tabularnewline
+          	\textbf{Postconditions} & \begin{itemize}
+          	\item Helfereinsatz ist dem User hinzugefügt
+          	\item Helfereinsatz ist nicht mehr als "offen" markiert
+          	\end{itemize}
+            \tabularnewline
+        	\tableend
+    	\end{tabularx}
+   		\caption{Operation Contract UC02}
+	\end{table}
+	
+\section{Contract zu UC08: Einsätze für Event verwalten (CRUD)}
+	\begin{table}[H]
+    	\tablestyle
+    	\tablealtcolored
+    	\begin{tabularx}{\textwidth}{l X l}
+        	\tablebody
+        	\textbf{Operation} & CreateTask(Comment:String, StartTime:Time, EndTime:Time. TaskType:TaskType)
+        	\tabularnewline
+          	\textbf{Cross references} & -
+            \tabularnewline
+          	\textbf{Preconditions} & \begin{itemize}
+          	\item Zugehöriges Event wurde selektiert
+          	\item Mitglied hat Planer-Benachrichtigung
+          	\end{itemize}
+            \tabularnewline
+          	\textbf{Postconditions} & \begin{itemize}
+          	\item Helfereinsatz wurde dem Event zugeordnet
+          	\item System hat sichergestellt, dass Pflichtangaben gemacht
+          	\item Attributwerte wurden gesetzt
+          	\end{itemize}
+            \tabularnewline
+        	\tableend
+    	\end{tabularx}
+   		\caption{Operation Contract UC08}
+	\end{table}
