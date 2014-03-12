@@ -18,11 +18,11 @@ Effizienz, Änderbarkeit,Übertragbarkeit)
     	\tablealtcolored
     	\begin{tabularx}{\textwidth}{l X l}
         	\tablebody
-        	\textbf{Angemessenheit (suitability)} & \textcolor{red}{<Die Fähigkeit des Softwareprodukts, für die spezifizierten Aufgaben und Ziele des Benutzers einen angemessenen Funktionsumfang zur Verfügung zu stellen. >}
+        	\textbf{Angemessenheit (suitability)} & Der Funktionsumfang der Benutzer kann durch verwendung von unterschiedlichen Rollen geregelt werden. Weitere Informationen zu den Rollen sind im Punkt 'Sicherheit' ersichtlich.
         	\tabularnewline
-          	\textbf{Richtigkeit (accuracy)} & Zeitlich können die Helfereinsätze im Viertelstundenraster gesetzt werden. Mitglieder können sich nicht in Helferinsätze einschreiben, wenn zu diesem Zeitpunkt bereits ein eingeschriebener Helfereinsatz existiert.
+          	\textbf{Richtigkeit (accuracy)} & Zeitlich können die Helfereinsätze im 5-Minuten-Raster gesetzt werden. Mitglieder können sich nicht in Helferinsätze einschreiben, wenn zu diesem Zeitpunkt bereits ein eingeschriebener Helfereinsatz existiert.
             \tabularnewline
-        	\textbf{Interoperabilität (interoperability)} & Das Projekt VolutaryO stellt eine für den Benutzer plattformunabhängige Weboberfläche dar. Unterschiede in der Darstellung können lediglich bei der Verwendung von unterschiedlichen Webbrowsern auftreten.
+        	\textbf{Interoperabilität (interoperability)} & Das Projekt VolutaryO stellt eine für den Benutzer plattformunabhängige Weboberfläche dar. Unterschiede in der Darstellung können lediglich bei der Verwendung von unterschiedlichen Webbrowsern und Endgeräten auftreten.
             \tabularnewline
         	\textbf{Ordnungsmässigkeit(compliance)} & \textcolor{red}{<Die Eigenschaft der Software, Normen und Vereinbarungen bezüglich des Qualitätsmerkmals „Funktionalität“ zu erfüllen.>}
             \tabularnewline
@@ -50,9 +50,9 @@ Effizienz, Änderbarkeit,Übertragbarkeit)
         	\tablebody
         	\textbf{Reife (maturity)} & \textcolor{red}{<Die Fähigkeit des Softwareprodukts, Ausfälle Aufgrund von Fehlerzuständen in der Software zu vermeiden.>}
         	\tabularnewline
-          	\textbf{Fehlertoleranz (fault tolerance)} & \textcolor{red}{<Die Fähigkeit des Softwareprodukts, ein bestimmtes Leistungsniveau im Falle von Fehlerzuständen oder Unvereinbarkeit mit der spezifizierten Schnittstelle aufrecht zu erhalten.>}
+          	\textbf{Fehlertoleranz (fault tolerance)} & \textcolor{red}{kontrollieren}Da die Webapplikation nur auf einer Instanz läuft, kann ist bei einem Ausfall die Seite nicht mehr zugänglich.
             \tabularnewline
-        	\textbf{Wiederherstellbarkeit (recoverability)} & Durch das tägliche Backup der Web-Applikation, kann der Zustand des Vortages schnell wiederhergestellt werden.
+        	\textbf{Wiederherstellbarkeit (recoverability)} & Durch das tägliche Backup der Daten, kann der Zustand des Vortages schnell wiederhergestellt werden.
             \tabularnewline
            	\tableend
     	\end{tabularx}
@@ -67,7 +67,7 @@ Effizienz, Änderbarkeit,Übertragbarkeit)
     	\tablealtcolored
     	\begin{tabularx}{\textwidth}{l X l}
         	\tablebody
-        	\textbf{Verständlichkeit (understandability)} &  \textcolor{red}{Dominik's Mockup}Das Interface sollte sehr verständlich aufgebaut sein. Es ist anzunehmen, dass eine Vielzahl der Benutzer über ihr Smartphone auf unsere Webseite zugreifen werden, optimieren wir auch unser Responsive Design auf eine schnelle und einfache Bedienbarkeit um unsere unten erwähnten Bedienzeiten einhalten zu können.
+        	\textbf{Verständlichkeit (understandability)} &  \textcolor{red}{Dominik's Mockup}Das Interface sollte sehr verständlich aufgebaut sein. Es ist anzunehmen, dass eine Vielzahl der Benutzer über ihr Smartphone auf unsere Webseite zugreifen werden. Deshalb optimieren wir auch unser responsive Design auf eine schnelle und einfache Bedienbarkeit, um unsere unten erwähnten Bedienzeiten einhalten zu können.
         	\tabularnewline
           	\textbf{Erlernbarkeit (learnability)} & Organisatoren (Rolle: Planer) erhalten zu beginn eine kurze Schulung über die Verwaltung von Events und Helfereinsätzen. Sie erhalten zugleich die benötigten Informationen, um als Anlaufstelle für die restlichen Benutzer (Rolle: Mitglied) im Verein dienen zu können.
             \tabularnewline
@@ -86,9 +86,9 @@ Effizienz, Änderbarkeit,Übertragbarkeit)
     	\tablealtcolored
     	\begin{tabularx}{\textwidth}{l X l}
         	\tablebody
-        	\textbf{Zeitverhalten (time behaviour)} & <text>
+        	\textbf{Zeitverhalten (time behaviour)} & Das Zeitverhalten hängt stark von der Hardwareumgebung ab. Da in unserem Projekt die endgültige Umgebung noch nicht feststeht, können keine definitiven Angaben zum Zeitverhalten geben. Die Web Plattform (in einem aktuellen Webbrowser) soll aber mindestens 80\% der Anfragen innerhalb von 5 Sekunden laden. 
         	\tabularnewline
-          	\textbf{Verbrauchsverhalten (resource behaviour)} & <text>
+          	\textbf{Verbrauchsverhalten (resource behaviour)} & \textcolor{red}{Punkte zusammenfassen?}  
             \tabularnewline
         	\tableend
     	\end{tabularx}
@@ -102,13 +102,13 @@ Effizienz, Änderbarkeit,Übertragbarkeit)
     	\tablealtcolored
     	\begin{tabularx}{\textwidth}{l X l}
         	\tablebody
-        	\textbf{Analysierbarkeit (analysability)} & <text>
+        	\textbf{Analysierbarkeit (analysability)} & \textcolor{red}{lb fragen}
         	\tabularnewline
-          	\textbf{Modifizierbarkeit (changeability)} & <text>
+          	\textbf{Modifizierbarkeit (changeability)} & Die Anwendung wird in einer 3-Tier Architektur aufgebaut, was das Bearbeiten der einzelnen Abschnitte erleichert.
             \tabularnewline
-          	\textbf{Stabilität (stability)} & <text>
+          	\textbf{Stabilität (stability)} & \textcolor{red}{lb fragen}
             \tabularnewline
-          	\textbf{Prüfbarkeit (testability)} & <text>
+          	\textbf{Prüfbarkeit (testability)} & \textcolor{red}{lb fragen}
             \tabularnewline
         	\tableend
     	\end{tabularx}
@@ -116,35 +116,16 @@ Effizienz, Änderbarkeit,Übertragbarkeit)
 	\end{table}
 	
 	\subsection{Übertragbarkeit (portability)}
-	Die Fähigkeit des Softwareprodukts, in eine andere Umgebung übertragen zu werden. Die Umgebung kann dabei sowohl die organisatorische Umgebung als auch die Hardware- oder Software-Umgebung sein.
-	\begin{table}[H]
-    	\tablestyle
-    	\tablealtcolored
-    	\begin{tabularx}{\textwidth}{l X l}
-        	\tablebody
-        	\textbf{Anpassbark
-        	 eit (adaptability)} & <text>
-        	\tabularnewline
-          	\textbf{Installierbarkeit (installability)} & <text>
-            \tabularnewline
-          	\textbf{Konformität (conformance)} & <text>
-            \tabularnewline
-          	\textbf{Austauschbarkeit (replaceability)} & <text>
-            \tabularnewline
-        	\tableend
-    	\end{tabularx}
-   		\caption{Übertragbarkeit}
-	\end{table}
+	Dieser Punkt wird in unserem Projekt nicht behandelt, da es sich um eine Weboberfläche handelt.
 	
 	\section{Leistung (performance)}
-	<Antwortzeiten, Durchsatzraten>
-	<Achtung: sind von Hardwareumgebung und Systembenutzung abhängig
+	\textcolor{red}{Zusammenfassen mit Effizienz im ISO? }
 	\section{Mengenanforderungen (quantities)}
-	<Anzahl Kundendatensätze>
-	<Anzahl gleichzeitige Benutzer>
+	Im Rahmen des Projekts sollten rund 250 Benutzer verwaltet werden.  Zu Spitzenzeiten rechnen wir mit 20 gleichzeitig aktiven Sitzungen (kurz vor Ablauf der Sperrzeit). 
 		
 	\section{Randbedingungen (environment)}
-	<Einschränkungen bezüglich Realisierung: Programmiersprache, verw. Oracle DB-server>
-	<Achtung: keine unnötigen Einschränkungen>
+	Das Projekt wird mittels ASP.Net realisiert. Somit wird dafür ein Windows Server 2012 eingesetzt für die Verwendung von Visual Studio Online. Als Datenbank wird während der Projektlaufzeit MSSQL eingesetzt.
+	\subsection {Programmiersprache}
+	Die Programmiersprache ist in diesem Falle C\#.
 
 	
