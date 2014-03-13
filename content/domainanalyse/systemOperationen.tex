@@ -1,54 +1,54 @@
 \chapter{Systemoperationen}
-\section{Contract zu UC02: Für Helfereinsatz eintragen}
+\section{Contract zu UC01: Für Helfereinsatz an-/abmelden}
 	\begin{table}[H]
     	\tablestyle
     	\tablealtcolored
     	\begin{tabularx}{\textwidth}{l X l}
         	\tablebody
-        	\textbf{Operation} & LogonTask(User:User)
+        	\textbf{Operation} & submitForTask(Task:Task)
         	\tabularnewline
-          	\textbf{Cross references} & -
+          	\textbf{Cross references} & UC01
             \tabularnewline
           	\textbf{Preconditions} & \begin{itemize}
+          	\item User ist im System vorhanden
           	\item Event ist vorhanden
           	\item User ist zum gleichen Zeitpunkt nicht bereits bei einem anderen Event angemeldet
-          	\item User erfüllt die Einsatzanforderungen wie beispielsweise: Alter
-          	\item User ist im System angemeldet
-          	\item Helfereinsatz ist noch nicht vergeben
+          	\item User erfüllt die Einsatzanforderungen wie beispielsweise Alter
+          	\item Kontingent für benötigte Helfer wurde aktualisiert
           	\end{itemize}
             \tabularnewline
           	\textbf{Postconditions} & \begin{itemize}
           	\item Helfereinsatz ist dem User hinzugefügt
-          	\item Helfereinsatz ist nicht mehr als "offen" markiert
+          	\item Kontingent für benötigte Helfer wurde aktualisiert
           	\end{itemize}
             \tabularnewline
         	\tableend
     	\end{tabularx}
-   		\caption{Operation Contract UC02}
+   		\caption{Operation Contract UC01}
 	\end{table}
-	
-\section{Contract zu UC08: Einsätze für Event verwalten (CRUD)}
+\section{Contract zu UC03: Helfereinsatz planen}
 	\begin{table}[H]
     	\tablestyle
     	\tablealtcolored
     	\begin{tabularx}{\textwidth}{l X l}
         	\tablebody
-        	\textbf{Operation} & CreateTask(Comment:String, StartTime:Time, EndTime:Time. TaskType:TaskType)
+        	\textbf{Operation} & planTaskForEvent(Event, TimeFrom, TimeTo, Function, NumPers)
         	\tabularnewline
-          	\textbf{Cross references} & -
+          	\textbf{Cross references} & UC03
             \tabularnewline
           	\textbf{Preconditions} & \begin{itemize}
-          	\item Zugehöriges Event wurde selektiert
-          	\item Mitglied hat Planer-Benachrichtigung
+          	\item Planer ist im System angemeldet
+          	\item Event ist im System vorhanden
+          	\item Funktion ist im System vorhanden
+          	\item NumPers > 0
           	\end{itemize}
             \tabularnewline
           	\textbf{Postconditions} & \begin{itemize}
-          	\item Helfereinsatz wurde dem Event zugeordnet
-          	\item System hat sichergestellt, dass Pflichtangaben gemacht
-          	\item Attributwerte wurden gesetzt
+			\item Helfereinsätze wurden erstellt und mit dem entsprechenden Event verbunden
+			\item Attribute sind korrekt gesetzt
           	\end{itemize}
             \tabularnewline
         	\tableend
     	\end{tabularx}
-   		\caption{Operation Contract UC08}
+   		\caption{Operation Contract UC03}
 	\end{table}
