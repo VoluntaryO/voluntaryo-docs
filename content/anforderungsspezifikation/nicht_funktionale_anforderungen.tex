@@ -1,18 +1,7 @@
 \chapter{Nichtfunktionale Anforderungen}
-	\section{Checkliste}
-	\begin{itemize}
-		\item Qualitätsmerkmale (Funktionalität, Zuverlässigkeit, Benutzbarkeit,
-Effizienz, Änderbarkeit,Übertragbarkeit)
-		\item Mengen, Leistung
-		
-		\item Überprüfbar formuliert
-	\end{itemize}
-	
-	\href{http://de.wikipedia.org/wiki/ISO/IEC_9126}{ISO 9126}
 	\section{Qualitätsmerkmale}
-	Inhalt dieses Abschnittes ist es, nicht-funktionale Anforderungen an dieses Projekt festzuhalten.Für das Qualitätsmodell verwenden wir die Software-Qualitätsmerkmale der Norm ISO 9126.
+	Inhalt dieses Abschnittes ist es, nichtfunktionale Anforderungen an dieses Projekt festzuhalten. Für das Qualitätsmodell verwenden wir die Software-Qualitätsmerkmale der Norm ISO 9126.
 	\subsection{Funktionalität(functionality)}
-	Die Fähigkeit des Softwareprodukts, ausdrücklich genannte oder implizite Anforderungen zu erfüllen, die für den Gebrauch der Software unter spezifizierten Bedingungen notwendig sind.
 	\begin{table}[H]
     	\tablestyle
     	\tablealtcolored
@@ -23,8 +12,6 @@ Effizienz, Änderbarkeit,Übertragbarkeit)
           	\textbf{Richtigkeit (accuracy)} & Zeitlich können die Helfereinsätze im 5-Minuten-Raster gesetzt werden. Mitglieder können sich nicht in Helferinsätze einschreiben, wenn zu diesem Zeitpunkt bereits ein eingeschriebener Helfereinsatz existiert.
             \tabularnewline
         	\textbf{Interoperabilität (interoperability)} & Das Projekt VolutaryO stellt eine für den Benutzer plattformunabhängige Weboberfläche dar. Unterschiede in der Darstellung können lediglich bei der Verwendung von unterschiedlichen Webbrowsern und Endgeräten auftreten.
-            \tabularnewline
-        	\textbf{Ordnungsmässigkeit(compliance)} & \textcolor{red}{<Die Eigenschaft der Software, Normen und Vereinbarungen bezüglich des Qualitätsmerkmals „Funktionalität“ zu erfüllen.>}
             \tabularnewline
          	\textbf{Sicherheit (security)} & Neben der Aufteilung von verschiedenen Benutzerrollen (Admin, Planer, Mitglied), erhält jedes Mitglied seinen eigenen passwortgeschützten Benutzeraccount. Rechte der folgenden Benutzerrollen:
      
@@ -42,15 +29,12 @@ Effizienz, Änderbarkeit,Übertragbarkeit)
 	
 	
 	\subsection{Zuverlässigkeit (reliability)}
-	Die Fähigkeit des Softwareprodukts, ein bestimmtes Leistungsniveau unter definierten Bedingungen über einen definierten Zeitraum aufrecht zu erhalten.
 	\begin{table}[H]
     	\tablestyle
     	\tablealtcolored
     	\begin{tabularx}{\textwidth}{l X l}
         	\tablebody
-        	\textbf{Reife (maturity)} & \textcolor{red}{<Die Fähigkeit des Softwareprodukts, Ausfälle Aufgrund von Fehlerzuständen in der Software zu vermeiden.>}
-        	\tabularnewline
-          	\textbf{Fehlertoleranz (fault tolerance)} & \textcolor{red}{kontrollieren}Da die Webapplikation nur auf einer Instanz läuft, kann ist bei einem Ausfall die Seite nicht mehr zugänglich.
+          	\textbf{Fehlertoleranz (fault tolerance)} & Da die Webapplikation nur auf einer Instanz läuft, ist bei einem Ausfall die Seite nicht mehr zugänglich. In diesem Falle wird der Systemadministrator einebrufen.
             \tabularnewline
         	\textbf{Wiederherstellbarkeit (recoverability)} & Durch das tägliche Backup der Daten, kann der Zustand des Vortages schnell wiederhergestellt werden.
             \tabularnewline
@@ -61,71 +45,42 @@ Effizienz, Änderbarkeit,Übertragbarkeit)
 
 	
 	\subsection{Benutzbarkeit (usability)}
-	Benutzbarkeit bezieht sich darauf, dass die Software von bestimmten Nutzergruppen unter bestimmten Bedingungen verstanden, erlernt und benutzt werden kann und subsumiert folgende Untermerkmale:
 	\begin{table}[H]
     	\tablestyle
     	\tablealtcolored
     	\begin{tabularx}{\textwidth}{l X l}
         	\tablebody
-        	\textbf{Verständlichkeit (understandability)} &  \textcolor{red}{Dominik's Mockup}Das Interface sollte sehr verständlich aufgebaut sein. Es ist anzunehmen, dass eine Vielzahl der Benutzer über ihr Smartphone auf unsere Webseite zugreifen werden. Deshalb optimieren wir auch unser responsive Design auf eine schnelle und einfache Bedienbarkeit, um unsere unten erwähnten Bedienzeiten einhalten zu können.
+        	\textbf{Verständlichkeit (understandability)} & Es ist anzunehmen, dass eine Vielzahl der Benutzer über ihr Smartphone auf unsere Webseite zugreifen werden. Deshalb optimieren wir auch unser responsive Design auf eine schnelle und einfache Bedienbarkeit, um unsere unten erwähnten Bedienzeiten einhalten zu können.
         	\tabularnewline
           	\textbf{Erlernbarkeit (learnability)} & Organisatoren (Rolle: Planer) erhalten zu beginn eine kurze Schulung über die Verwaltung von Events und Helfereinsätzen. Sie erhalten zugleich die benötigten Informationen, um als Anlaufstelle für die restlichen Benutzer (Rolle: Mitglied) im Verein dienen zu können.
             \tabularnewline
-        	\textbf{Bedienbarkeit (operability)} & Die Bedienung sollte sehr intuitiv sein. Für einen Helfer (Rolle: Mitglied) sollte die Anmeldungsroutine für ein Event innerhalb von 2 bis 3 Minuten abgewickelt werden können.   	 
-            \tabularnewline
+        	\textbf{Bedienbarkeit (operability)} & Die Bedienung sollte sehr intuitiv sein. Für einen Helfer (Rolle: Mitglied) sollte die Anmeldungsroutine für ein Event innerhalb von 2 bis 3 Minuten abgewickelt werden können.\tabularnewline
         	\tableend
     	\end{tabularx}
    		\caption{Benutzbarkeit}
 	\end{table}
 
-	
-	\subsection{Effizienz (efficiency)}	
-	Die Fähigkeit des Softwareprodukts, ein bestimmtes Leistungsniveau in Relation zu den Ressourcen unter definierten Bedingungen zu erbringen. 
-	\begin{table}[H]
-    	\tablestyle
-    	\tablealtcolored
-    	\begin{tabularx}{\textwidth}{l X l}
-        	\tablebody
-        	\textbf{Zeitverhalten (time behaviour)} & Das Zeitverhalten hängt stark von der Hardwareumgebung ab. Da in unserem Projekt die endgültige Umgebung noch nicht feststeht, können keine definitiven Angaben zum Zeitverhalten geben. Die Web Plattform (in einem aktuellen Webbrowser) soll aber mindestens 80\% der Anfragen innerhalb von 5 Sekunden laden. 
-        	\tabularnewline
-          	\textbf{Verbrauchsverhalten (resource behaviour)} & \textcolor{red}{Punkte zusammenfassen?}  
-            \tabularnewline
-        	\tableend
-    	\end{tabularx}
-   		\caption{Effizienz}
-	\end{table}
 
 	\subsection{Änderbarkeit (maintainability)}
-	Die Fähigkeit des Softwareprodukts, modifiziert zu werden. Modifikationen können Korrekturen, Verbesserungen oder Anpassungen der Software an Änderungen der Umgebung umfassen, sowie Änderungen der Anforderungen und der funktionalen Spezifikationen.
-	\begin{table}[H]
-    	\tablestyle
-    	\tablealtcolored
-    	\begin{tabularx}{\textwidth}{l X l}
-        	\tablebody
-        	\textbf{Analysierbarkeit (analysability)} & \textcolor{red}{lb fragen}
-        	\tabularnewline
-          	\textbf{Modifizierbarkeit (changeability)} & Die Anwendung wird in einer 3-Tier Architektur aufgebaut, was das Bearbeiten der einzelnen Abschnitte erleichert.
-            \tabularnewline
-          	\textbf{Stabilität (stability)} & \textcolor{red}{lb fragen}
-            \tabularnewline
-          	\textbf{Prüfbarkeit (testability)} & \textcolor{red}{lb fragen}
-            \tabularnewline
-        	\tableend
-    	\end{tabularx}
-   		\caption{Änderbarkeit}
-	\end{table}
+	Durch eine Modularisierung in eine 3-Tier Architektur, kann das Bearbeiten und Organisieren der einzelnen Abschnitte erleichtert werden. Die weiteren Schritte Stabilität und Prüfbarkeit (Unit Tests) werden nicht weiter beschrieben, da für unser Projekt keine spezielle Gewichtung auf diesen Punkten besteht.
 	
-	\subsection{Übertragbarkeit (portability)}
+	\subsection {Übertragbarkeit (portability)}
 	Dieser Punkt wird in unserem Projekt nicht behandelt, da es sich um eine Weboberfläche handelt.
 	
 	\section{Leistung (performance)}
-	\textcolor{red}{Zusammenfassen mit Effizienz im ISO? }
-	\section{Mengenanforderungen (quantities)}
-	Im Rahmen des Projekts sollten rund 250 Benutzer verwaltet werden.  Zu Spitzenzeiten rechnen wir mit 20 gleichzeitig aktiven Sitzungen (kurz vor Ablauf der Sperrzeit). 
+	Das Zeitverhalten hängt stark von der Hardwareumgebung ab. Da in unserem Projekt die endgültige Umgebung noch nicht feststeht, können keine definitiven Angaben zum Zeitverhalten geben. Die Web Plattform (in einem aktuellen Webbrowser) soll aber mindestens 80\% der Anfragen innerhalb von 5 Sekunden laden. 
+	
+	\subsection{Mengenanforderungen (quantities)}
+	Im Rahmen des Projekts sollten rund 250 Benutzer verwaltet werden. Der Verein verfügt mehrere Mannschaften mit durchschnittlich 15 bis 20 Mitglieder. 
+	Zu Spitzenzeiten rechnen wir mit 30 gleichzeitig aktiven Sitzungen (kurz vor Ablauf der Sperrzeit).  
 		
 	\section{Randbedingungen (environment)}
 	Das Projekt wird mittels ASP.Net realisiert. Somit wird dafür ein Windows Server 2012 eingesetzt für die Verwendung von Visual Studio Online. Als Datenbank wird während der Projektlaufzeit MSSQL eingesetzt.
-	\subsection {Programmiersprache}
+	
+	\subsection{Internationalisierung}
+	Wir verzichten auf eine Internationalisierung, weil unser Projekt im Moment sich nur auf einen Verein bezieht (deutschsprachig).
+	
+	\subsection{Programmiersprache}
 	Die Programmiersprache ist in diesem Falle C\#.
 
 	
