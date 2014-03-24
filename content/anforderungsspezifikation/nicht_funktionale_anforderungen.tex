@@ -11,7 +11,7 @@
         	\tabularnewline
           	\textbf{Richtigkeit (accuracy)} & Zeitlich können die Helfereinsätze im 5-Minuten-Raster gesetzt werden. Mitglieder können sich nicht in Helferinsätze einschreiben, wenn zu diesem Zeitpunkt bereits ein eingeschriebener Helfereinsatz existiert.
             \tabularnewline
-        	\textbf{Interoperabilität (interoperability)} & Das Projekt VolutaryO stellt eine für den Benutzer plattformunabhängige Weboberfläche dar. Unterschiede in der Darstellung können lediglich bei der Verwendung von unterschiedlichen Webbrowsern und Endgeräten auftreten.
+        	\textbf{Interoperabilität (interoperability)} & Für die Webplattform sollten die aktuellsten Internetbrowser verwendet werden. Wir empfehlen die Verwendung des Google Chrome Browsers (Stand: März 2014) 
             \tabularnewline
          	\textbf{Sicherheit (security)} & Neben der Aufteilung von verschiedenen Benutzerrollen (Admin, Planer, Mitglied), erhält jedes Mitglied seinen eigenen passwortgeschützten Benutzeraccount. Rechte der folgenden Benutzerrollen:
      
@@ -34,7 +34,7 @@
     	\tablealtcolored
     	\begin{tabularx}{\textwidth}{l X l}
         	\tablebody
-          	\textbf{Fehlertoleranz (fault tolerance)} & Da die Webapplikation nur auf einer Instanz läuft, ist bei einem Ausfall die Seite nicht mehr zugänglich. In diesem Falle wird der Systemadministrator einebrufen.
+          	\textbf{Fehlertoleranz (fault tolerance)} & Gemäss der Fehlertoleranz bestehen keine besonderen Anforderungen. 
             \tabularnewline
         	\textbf{Wiederherstellbarkeit (recoverability)} & Durch das tägliche Backup der Daten, kann der Zustand des Vortages schnell wiederhergestellt werden.
             \tabularnewline
@@ -50,8 +50,6 @@
     	\tablealtcolored
     	\begin{tabularx}{\textwidth}{l X l}
         	\tablebody
-        	\textbf{Verständlichkeit (understandability)} & Es ist anzunehmen, dass eine Vielzahl der Benutzer über ihr Smartphone auf unsere Webseite zugreifen werden. Deshalb optimieren wir auch unser responsive Design auf eine schnelle und einfache Bedienbarkeit, um unsere unten erwähnten Bedienzeiten einhalten zu können.
-        	\tabularnewline
           	\textbf{Erlernbarkeit (learnability)} & Organisatoren (Rolle: Planer) erhalten zu beginn eine kurze Schulung über die Verwaltung von Events und Helfereinsätzen. Sie erhalten zugleich die benötigten Informationen, um als Anlaufstelle für die restlichen Benutzer (Rolle: Mitglied) im Verein dienen zu können.
             \tabularnewline
         	\textbf{Bedienbarkeit (operability)} & Die Bedienung sollte sehr intuitiv sein. Für einen Helfer (Rolle: Mitglied) sollte die Anmeldungsroutine für ein Event innerhalb von 2 bis 3 Minuten abgewickelt werden können.\tabularnewline
@@ -62,26 +60,24 @@
 
 
 	\subsection{Änderbarkeit (maintainability)}
-	Durch eine Modularisierung in eine 3-Tier Architektur, kann das Bearbeiten und Organisieren der einzelnen Abschnitte erleichtert werden. Die weiteren Schritte wie  Stabilität und Prüfbarkeit (Unit Tests) werden nicht weiter beschrieben, da für unser Projekt keine spezielle Gewichtung auf diesen Punkten besteht.
+	Dieser Punkt wird in unserem Projekt nicht behandelt, da es sich um eine Weboberfläche handelt.
 	
-	\subsection {Übertragbarkeit (portability)}
+	\subsection{Übertragbarkeit (portability)}
 	Dieser Punkt wird in unserem Projekt nicht behandelt, da es sich um eine Weboberfläche handelt.
 	
 	\section{Leistung (performance)}
-	Das Zeitverhalten hängt stark von der Hardwareumgebung ab. Da in unserem Projekt die endgültige Umgebung noch nicht feststeht, können keine definitiven Angaben zum Zeitverhalten gegeben werden. Die Web Plattform (in einem aktuellen Webbrowser) soll aber mindestens 80\% der Anfragen innerhalb von 5 Sekunden laden. 
-	
+	Das Zeitverhalten hängt stark von der Hardwareumgebung ab. Da in unserem Projekt die endgültige Umgebung noch nicht feststeht, können keine definitiven Angaben zum Zeitverhalten gegeben werden. Sobald die Serverumgebung vollständig geladen ist, soll die Operation "Einschreiben für einen Helfereinsatz" inklusive Validierung innerhalb von 3 Sekunden abgewickelt werden können.
+
 	\subsection{Mengenanforderungen (quantities)}
 	Im Rahmen des Projekts sollten rund 250 Benutzer verwaltet werden. Im Verein sind mehrere Mannschaften mit durchschnittlich 15 bis 20 Mitglieder. 
-	Zu Spitzenzeiten rechnen wir mit 30 gleichzeitig aktiven Sitzungen (kurz vor Ablauf der Sperrzeit).  
-		
-	\section{Randbedingungen (environment)}
-	Das Projekt wird mittels ASP.Net realisiert. Das System läuft auf einem virtuellen Windows Server 2012. 
-	Als Datenbank wird während der Projektlaufzeit MSSQL eingesetzt.
+	Zu Spitzenzeiten rechnen wir mit 30 gleichzeitig aktiven Sitzungen (kurz vor Ablauf der Sperrzeit). \\Ein durchschnittlicher Event beinhaltet 10 bis 15 freie Helfereinsätze, diese Zahl kann jedoch nach Eventgrösse variieren. Pro Woche werden durchschnittlich zwei Events durchgeführt.
+	\\Die Datenbank sollte eine Grösse von maximal 50-100 MB nicht übersteigen.
 	
-	\subsection{Internationalisierung}
+	
+	\section{Internationalisierung}
 	Wir verzichten auf eine Internationalisierung, weil unser Projekt im Moment sich nur auf einen Verein bezieht (deutschsprachig).
 	
-	\subsection{Programmiersprache}
+	\section{Programmiersprache}
 	Die Programmiersprache ist in diesem Falle C\#.
 
 	
