@@ -1,4 +1,6 @@
 %!TEX root = ../../architekturdokumentation.tex
 \chapter{Architektonische Ziele und Einschränkungen}
 	\section{Safety / Security)}
-	blabla
+	Auf die Applikation kann nur über HTTP zugegriffen werden. Eine Verschlüsselung ist nicht vorhergesehen, da keine kritischen Daten übermittelt werden. Die Applikation wird mit den gängigen Empfehlungen von Microsoft entwickelt, um die Sicherheit grundsätzlich sicherzustellen.
+	Passwörter werden nicht im Klartext gespeichert. Um Änderungen an dem Datenbestand vorzunehmen müssen die Benutzer angemeldet sein.
+	Auf der Datenbankebene wird kein Rechtesystem implementiert, da diese nicht direkt ansprechbar ist. Daher wird die ganze Rechtevergabe über den Applikationscode implementiert.
