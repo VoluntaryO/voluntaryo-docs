@@ -1,8 +1,9 @@
 %!TEX root = ../../architekturdokumentation.tex
 \chapter{Deployment}
-	\section{Frontend}
-	Dieses Dokument beschreibt die Architektur, die grundlegenden Ideen, Konzepte und Überlegungen für das Projekt VoluntaryO. Es dient den beteiligten Entwicklern die Aspekte des Systems zu definieren und zu verstehen können.
 	
-	
-	\section{Backend}
-	Nachfolgend werden die relevanten Eigenschaften der Architektur festgehalten. Spezielle Konzepte werden dokumentiert und beschrieben.
+	\includegraphics[width=\textwidth]{content/architekturdokumentation/images/deployment.png}
+
+	Das Deployment wird über die Visual Studio Funktion Web Deploy angeboten. Auf dem Server läuft der Dienst für Web Deployment, sodass man aus Visual Studio direkt über den Port 80 den Deploymentdienst aufrufen kann.
+	Dann wird ein vorkompiliertes Package direkt aus Visual Studio an den Server übertragen. Die Connection Strings zur Datenbank werden direkt im App.Config geändert, sodass auf dem Server die Connection richtig ist.
+	Durch diese Konfiguration lässt sich direkt aus Visual Studio mithilfe eines Klicks die gesamte Applikation auf dem Webserver deployen.
+	Vor jedem Deploy sollte alle Unit-Tests ausgeführt werden.
