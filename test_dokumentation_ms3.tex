@@ -1,0 +1,44 @@
+%!TEX program = xelatex
+\documentclass{template/document}
+\input{template/document.sty}
+
+\newcommand\documentTitle{Testdokumentation MS3 Projekt VoluntaryO}
+\newcommand\documentAuthorA{Dominik Freier}
+\newcommand\documentAuthorB{Nhat-Nam Le}
+\newcommand\documentAuthorC{Philipp Meier}
+\newcommand\documentAuthorD{Robin Bader}
+\newcommand\documentSubject{Software Engineering 2 - Projekt}
+
+\makeindex
+
+\begin{document}
+ 
+    \input{template/title}
+
+    \tableofcontents
+    \newpage
+
+    \section*{Änderungshistorie}
+    \begin{table}[H]
+        \tablestyle
+        \tablealtcolored
+        \begin{tabularx}{\textwidth}{l l X r}
+        \tableheadcolor
+            \tablehead Version & 
+            \tablehead Datum & 
+            \tablehead Änderung & 
+            \tablehead Person \\  
+        \tablebody
+            v1.0 & 25.03.2014 & Initialisierung & nle \tabularnewline
+        \tableend
+        \end{tabularx} 
+    \end{table}
+    \newpage
+
+	\input{content/test_dokumentation_ms3/01Systemtests}
+	\input{content/test_dokumentation_ms3/02Unittests}
+	\input{content/test_dokumentation_ms3/03Fazit}
+    % \input{template/playground}
+    
+    
+\end{document}

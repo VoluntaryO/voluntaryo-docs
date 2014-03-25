@@ -1,0 +1,81 @@
+\chapter{Systemtests}
+	\section{Elaboration E2}
+	\subsection{Voraussetzungen}
+	Die Voraussetzungen für den Systemtest in der End of Elaboration Phase sind eine bestehende Datenbank und eine Weboberfläche die mit der Datenbank interagiert.
+	\subsection{Vorbereitungen}
+	Da in dieser Phase noch keine Arbeiten bezüglich Benutzerverwaltung und Login eingeplant sind, werden die Daten statisch in die Datenbank gespeichert. 
+	\subsection{Use Case 01: Für Helfereinsatz anmelden}
+		\begin{table}[H]
+    	\tablestyle
+    	\tablealtcolored
+    	\begin{tabularx}{\textwidth}{l X X}
+        	\tablebody
+          	\textbf{1} & Der Benutzer kann den Helfereinsatz auswählen und sich anmelden. & Der Helfereinsatz ist ersichtlich und kann ausgewählt werden. Wird also im Dropdown angezeigt.
+            \tabularnewline
+        	\textbf{2} & Das System überprüft ob die Sperrfrist schon überschritten wurde & Die Überprüfung der Sperrfrist wird nicht funktionieren. Die Implementierung ist erst später eingeplant. 
+            \tabularnewline
+            \textbf{3} & Der Benutzer kann sich von einem angemeldeten Einsatz wieder abmelden. & Das Abmelden erfolgt durch das erfolgreiche Löschen des Eintrages aus der MemberTaskMapping Tabelle. Der Eintrag kann durch die Implementation der CRUD-Funktionen gelöscht werden.   
+            \tabularnewline
+            \textbf{4} & Das System überprüft, ob die Anforderungen für den Helfereinsatz erfüllt werden & Es werden zu diesem Zeitpunkt im Projekt noch keine Anforderungen überprüft, deshalb wird es noch keine Fehlermeldung geben.   
+            \tabularnewline
+           	\tableend
+    	\end{tabularx}
+   		\caption{UC01: Für Helfereinsatz an-/abmelden}
+	\end{table}
+	
+	\subsection{Testprotokoll UC01}
+	\begin{table}[H]
+    	\tablestyle
+    	\tablealtcolored
+    	\begin{tabularx}{\textwidth}{l X l}
+        	\tablebody
+          	\textbf{1} & Der Helfereinsatz wird angezeigt und kann ausgewählt werden. & \textcolor{green}{OK}
+            \tabularnewline
+        	\textbf{2} & Überprüfung findet nicht statt, Verhalten gemäss vorhersage. & \textcolor{green}{OK}
+            \tabularnewline
+            \textbf{3} & Das Mapping zwischen Benutzer und Helfereinsatz kann gelöscht werden. & \textcolor{green}{OK} 
+            \tabularnewline
+            \textbf{4} & Anforderungen zum Helfereinsatz werden noch nicht überprüft, Verhalten gemäss Vorhersage. & \textcolor{green}{OK} 
+            \tabularnewline
+           	\tableend
+    	\end{tabularx}
+   		\caption{Testprotokoll: UC01}
+	\end{table}
+	
+
+		\subsection{Use Case 03: Helfereinsatz planen}
+		\begin{table}[H]
+    	\tablestyle
+    	\tablealtcolored
+    	\begin{tabularx}{\textwidth}{l X X}
+        	\tablebody
+          	\textbf{1} & Ein neuer Helfereinsatz kann erstellt werden & Informationen können zum Helfereinsatz können eingetragen werden.
+            \tabularnewline
+        	\textbf{2} & Der Helfereinsatz kann einem bestehenden Event zugewiesen werden & Anstehende Events werden mittels Dropdown Fenster angezeigt und können ausgewählt werden.
+            \tabularnewline
+            \textbf{3} &  & Detailansicht des Helfereinsatzes gibt Informationen über Eventname, Helfereinsatztyp, Helfereinsatzkommentar, Start-/Endzeit, maximale Anzahl Personen und die dafür angemeldeten Benutzer.   
+            \tabularnewline
+            \textbf{4} & Helfereinsatz kann bearbeitet werden & Die Informationen des Helfereinsatzes können bearbeitet werden.
+            \tabularnewline
+           	\tableend
+    	\end{tabularx}
+   		\caption{UC03: Helfereinsatz planen}
+	\end{table}
+		\subsection{Testprotokoll UC03}
+	\begin{table}[H]
+    	\tablestyle
+    	\tablealtcolored
+    	\begin{tabularx}{\textwidth}{l X l}
+        	\tablebody
+          	\textbf{1} & Nach dem Klicken auf "Create new HelperTask" erscheint die Maske um einen Helfereinsatz zu erstellen & \textcolor{green}{OK}
+            \tabularnewline
+        	\textbf{2} & Das Dropdown Fenster erscheint und ein vorhandener Event kann ausgewählt werden & \textcolor{green}{OK}
+            \tabularnewline
+            \textbf{3} & In der Detailansicht werden bis auf die dafür eingetragenen Benutzer alle Informationen dargestellt & \textcolor{orange}{NOK} 
+            \tabularnewline
+            \textbf{4} & Informationen können verändert werden. Die Änderungen werden anschliessend übernommen. Benutzer können noch nicht nachträglich hinzugefügt und entfernt werden. & \textcolor{orange}{NOK} 
+            \tabularnewline
+           	\tableend
+    	\end{tabularx}
+   		\caption{Testprotokoll: UC03}
+	\end{table}
