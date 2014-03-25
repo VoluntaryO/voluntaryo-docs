@@ -1,15 +1,39 @@
 %!TEX root = ../../architekturdokumentation.tex
 \chapter{Systemübersicht}
-	Die Systemarchitektur von VoluntaryO gliedert sich in drei Teilbereiche. Die Datenbank, die Serviceschnittstelle und die Presentationschicht.
+	\begin{wrapfigure}[8]{R}{0.5\textwidth}
+  		\vspace{-25pt}
+	  	\begin{center}
+    		\includegraphics[height=7cm]{content/architekturdokumentation/images/systemarchitektur.png}
+	  	\end{center}
+  		\vspace{-20pt}
+	 	\caption{Systemübersicht von VoluntaryO}
+	\end{wrapfigure}
+    Diese Darstellung soll als Big-Picture üder die verwendeten Technologien nach Tier dienen.
+	Die Systemarchitektur von VoluntaryO gliedert sich in drei Teilbereiche: 
+	\\\begin{itemize}
+		\item die Datenbank
+		\item die Serviceschnittstelle
+		\item die Presentationschicht
+	\end{itemize}
+  	\vspace{3cm}
+
 	\section{Komponenten}
 		\subsection{Datenbank}
-		Als Datenbanksystem wird der Microsoft SQL Server 2012 eingesetzt. Auf den Entwicklungsmaschinen setzen wir die in Visual Studio eingebaut LocalDb ein. Die Datenbank wird über SQL Management Studio administriert. Der Grund für die Evaluation des SQL Servers ist die gute Integrierung in Microsoft Umgebungen.
+		Als Datenbanksystem wird der Microsoft SQL Server 2012 eingesetzt. Auf den Entwicklungsmaschinen setzen wir die in Visual Studio eingebaut LocalDb ein. Die Datenbank wird über SQL Management Studio administriert. Der Grund für die Evaluation des SQL Servers ist die gute Integrierung in Microsoft Umgebungen. Das EF sollte aber einen einfachen Austausch des Datenbank Systems ermöglichen.
 		\subsection{Webserver}
 		Als Webserver setzen wir den Internet Information Server (IIS) von Microsoft ein, der uns bestmögliche Integration in unsere Entwicklungsumgebung bieten soll. Auf den Entwicklungsmaschinen ist IIS Express installiert, dass standardmässig mit Visual Studio ausgeliefert wird.
 		\subsection{Client}
 		Die späteren Benutzer werden über einen Webbrowser auf die Applikation zugreifen. Unsere Applikation soll heute gängige Browser unterstützen. Konkret werden wir hier die von Bootstrap 3.0 unterstützten Browser supporten. Mobile Browser werden nicht direkt getestet aber unterstützt. Einzig die Anmeldung für einen Event sollte auch per Mobile Browser möglich sein.
 
 	\section{Schnittstellen}
+	    \begin{figure}[h]
+	  		\vspace{-5pt}
+	    	\centering
+	    	\includegraphics[width=0.9\textwidth]{content/architekturdokumentation/images/uebersicht_der_komponenten.png}
+	  		\vspace{-25pt}
+	    	\caption{Übersicht der Komponenten und Schnittstellen}
+		\end{figure}
+
 		\subsection{Datenbankzugriff}
 		Der Datenbankzugriff erfolgt direkt über das Entity Framework. Hier werden die Abfragen über LINQ erstellt.
 
