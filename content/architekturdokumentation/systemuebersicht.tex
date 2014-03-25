@@ -1,0 +1,20 @@
+%!TEX root = ../../architekturdokumentation.tex
+\chapter{Systemübersicht}
+	Die Systemarchitektur von VoluntaryO gliedert sich in drei Teilbereiche. Die Datenbank, die Serviceschnittstelle und die Presentationschicht.
+	\section{Komponenten}
+		\subsection{Datenbank}
+		Als Datenbanksystem wird der Microsoft SQL Server 2012 eingesetzt. Auf den Entwicklungsmaschinen setzen wir die in Visual Studio eingebaut LocalDb ein. Die Datenbank wird über SQL Management Studio administriert. Der Grund für die Evaluation des SQL Servers ist die gute Integrierung in Microsoft Umgebungen.
+		\subsection{Webserver}
+		Als Webserver setzen wir den Internet Information Server (IIS) von Microsoft ein, der uns bestmögliche Integration in unsere Entwicklungsumgebung bieten soll. Auf den Entwicklungsmaschinen ist IIS Express installiert, dass standardmässig mit Visual Studio ausgeliefert wird.
+		\subsection{Client}
+		Die späteren Benutzer werden über einen Webbrowser auf die Applikation zugreifen. Unsere Applikation soll heute gängige Browser unterstützen. Konkret werden wir hier die von Bootstrap 3.0 unterstützten Browser supporten. Mobile Browser werden nicht direkt getestet aber unterstützt. Einzig die Anmeldung für einen Event sollte auch per Mobile Browser möglich sein.
+
+	\section{Schnittstellen}
+		\subsection{Datenbankzugriff}
+		Der Datenbankzugriff erfolgt direkt über das Entity Framework. Hier werden die Abfragen über LINQ erstellt.
+
+		\subsection{Webling CSV}
+		Die Schnittstelle auf die Vereinsverwaltung Webling soll uns die Möglichkeit bieten auf Benutzer und Team Informationen zuzugreifen. Die Daten werden in einem CSV-File angeboten, welches mittels eines HTTP-GET in unsere Applikation geladen wird.
+
+		\subsection{Swissunihockey REST}
+		Swissunihockey ist ebenfalls eine externe Schnittstelle, welche die aktuellen Events anbietet. Hier kann auf die Daten über eine REST-API zugegriffen werden.
