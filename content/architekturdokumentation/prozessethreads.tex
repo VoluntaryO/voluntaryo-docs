@@ -3,5 +3,13 @@
 	\section{Datenbank}
 	Die SQL Server Datenbank garantiert die ACID Prinzipien. Sämtliche Datenzugriffe sollen in Transaktionen erfolgen, damit die Integrität der Datenbank sicherstellt.
 	
+	\subsection{Optimistic Concurrency}
+	Jede Eingabemaske von VoluntaryO soll für das Handling von Concurrency Problemen das Verfahren Optimistic Concurrency einsetzen. Dies bedeutet, dass man Concurrency Konflikte erlaubt, dann aber korrekt darauf reagiert.
+Das Entity Framework erlaubt einem das Erkennen von solchen Konflikten über das Werfen von OptimisticConcurrencyExceptions. Dafür muss die Datenbank und das Datenmodell aber korrekt konfiguriert sein.
+Möglich macht dies das Einfügen einer Tracking-Column, die angibt wann eine Spalte das letzte mal geändert wurde. Dann kann Entity Framework so konfiguriert werden, dass diese Column in jedem SQL-Update- oder Delete-Command über die Where-Clausel abgefragt wird. Wenn keine Felder upgedatet werden, interpretiert EF dies automatisch al Concurrency-Konflikt.
+
+
+	
 	\section{Server}
+	
 	
