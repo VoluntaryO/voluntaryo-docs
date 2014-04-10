@@ -81,7 +81,7 @@
    		\caption{Testprotokoll: UC03}
 	\end{table}
 	
-	ter{Systemtests}
+	
 	\section{Elaboration E3}
 	\subsection{Voraussetzungen}
 	Die Voraussetzungen für den Systemtest in der End of Elaboration Phase sind eine bestehende Datenbank und eine Weboberfläche die mit der Datenbank interagiert.
@@ -99,7 +99,11 @@
             \tabularnewline
             \textbf{3} & Der Benutzer kann sich von einem angemeldeten Einsatz wieder abmelden. & Das Abmelden erfolgt durch das erfolgreiche Löschen des Eintrages aus der MemberTaskMapping Tabelle. Der Eintrag kann durch die Implementation der CRUD-Funktionen gelöscht werden.   
             \tabularnewline
-            \textbf{4} & Das System überprüft, ob die Anforderungen für den Helfereinsatz erfüllt werden & Es werden zu diesem Zeitpunkt im Projekt noch keine Anforderungen überprüft, deshalb wird es noch keine Fehlermeldung geben.   
+            \textbf{4} & Das System überprüft, ob die Anforderungen für den Helfereinsatz erfüllt werden & Es werden zu diesem Zeitpunkt im Projekt noch keine Anforderungen überprüft, deshalb wird es noch keine Fehlermeldung geben.  
+              \tabularnewline
+            \textbf{5} & Eigene Angemeldete Helfereinsätze können angezeigt werden & Die View für diese Ansicht besteht schon, jedoch ist diese Ansicht noch nicht komplett implementiert.
+              \tabularnewline
+            \textbf{6} & Die angemeldeten Helfereinsätze können exportiert werden & Zu diesem Zeitpunkt sind noch keine Arbeitspakete für die Exportfunktion eingeplant. 
             \tabularnewline
            	\tableend
     	\end{tabularx}
@@ -119,6 +123,10 @@
             \textbf{3} & Das Mapping zwischen Benutzer und Helfereinsatz kann gelöscht werden. & \textcolor{green}{OK} 
             \tabularnewline
             \textbf{4} & Anforderungen zum Helfereinsatz werden noch nicht überprüft, Verhalten gemäss Vorhersage. Unit Tests dafür sind jedoch schon vorhanden. & \textcolor{green}{OK} 
+                        \tabularnewline
+            \textbf{5} & Die View besteht im Moment im MockupEvent  & \textcolor{green}{OK} 
+                        \tabularnewline
+            \textbf{6} & Anforderungen zum Helfereinsatz werden noch nicht überprüft, Verhalten gemäss Vorhersage & \textcolor{green}{OK} 
             \tabularnewline
            	\tableend
     	\end{tabularx}
@@ -136,7 +144,7 @@
             \tabularnewline
         	\textbf{2} & Der Helfereinsatz kann einem bestehenden Event zugewiesen werden & Anstehende Events werden mittels Dropdown Fenster angezeigt und können ausgewählt werden.
             \tabularnewline
-            \textbf{3} &  & Detailansicht des Helfereinsatzes gibt Informationen über Eventname, Helfereinsatztyp, Helfereinsatzkommentar, Start-/Endzeit, maximale Anzahl Personen und die dafür angemeldeten Benutzer.   
+            \textbf{3} & Detailierte Informationen zum Helfereinsatz aufrufen & Detailansicht des Helfereinsatzes gibt Informationen über Eventname, Helfereinsatztyp, Helfereinsatzkommentar, Start-/Endzeit, maximale Anzahl Personen und die dafür angemeldeten Benutzer.   
             \tabularnewline
             \textbf{4} & Helfereinsatz kann bearbeitet werden & Die Informationen des Helfereinsatzes können bearbeitet werden.
             \tabularnewline
@@ -150,13 +158,13 @@
     	\tablealtcolored
     	\begin{tabularx}{\textwidth}{l X l}
         	\tablebody
-          	\textbf{1} & Nach dem Klicken auf "Create new HelperTask" erscheint die Maske um einen Helfereinsatz zu erstellen & \textcolor{green}{OK}
+          	\textbf{1} & Nach dem Klicken auf Create new HelperTask erscheint die Maske um einen Helfereinsatz zu erstellen & \textcolor{green}{OK}
             \tabularnewline
         	\textbf{2} & Das Dropdown Fenster erscheint und ein vorhandener Event kann ausgewählt werden & \textcolor{green}{OK}
             \tabularnewline
-            \textbf{3} & In der Detailansicht werden bis auf die dafür eingetragenen Benutzer alle Informationen dargestellt & \textcolor{orange}{NOK} 
+            \textbf{3} & In der Detailansicht werden bis auf die dafür eingetragenen Benutzer alle Informationen dargestellt & \textcolor{green}{OK} 
             \tabularnewline
-            \textbf{4} & Informationen können verändert werden. Die Änderungen werden anschliessend übernommen. Benutzer können noch nicht nachträglich hinzugefügt und entfernt werden. & \textcolor{orange}{NOK} 
+            \textbf{4} & Informationen können verändert werden. Die Änderungen werden anschliessend übernommen. Benutzer können noch nicht nachträglich hinzugefügt und entfernt werden. & \textcolor{green}{OK} 
             \tabularnewline
            	\tableend
     	\end{tabularx}
