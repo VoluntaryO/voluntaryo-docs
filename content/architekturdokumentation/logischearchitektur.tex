@@ -14,9 +14,10 @@
   		\vspace{-25pt}
     	\caption{Domain in Subsystem VoluntaryO.Dal}
 	\end{figure}
+	Jede Model-Klasse implementiert die Schnittstelle \textit{IObjectState}, resp. leitet von der abstrakten Klasse \textit{Entity} ab.
 
 	\subsection{Mapping}
-	Das Mapping wird mit dem \textit{modelBuilder} des Entity Framework (EF) gesteuert. Bspw.
+	Das Mapping wird mit dem \textit{modelBuilder} des EF gesteuert. Bspw.
 	\begin{lstlisting}[language=CSharp, caption=Mapping in VoluntaryoContext.cs, label=lst:mappingcontextcs, firstnumber=1]
 // TeamEventMapping
 modelBuilder.Entity<Team>()
@@ -40,7 +41,29 @@ modelBuilder.Entity<Team>()
 	\end{itemize}
 
 	\subsection{Repository / Unit of Work Pattern}
-	Dieses Kapitel kann evtl. auch unter Service beschrieben werden.
+	Generell wird das \href{https://genericunitofworkandrepositories.codeplex.com/}{\textit{Generic Unit of Work \& Repositories Framework}} befolgt um den Code Test- und Wartbar zu halten. Folgende Vorteile tun sich auf:
+	\\\begin{itemize}	
+		\item Austauschbarkeit ORM
+		\item Testbarkeit
+		\item Jeder Request hat eigene Unit of Work (siehe später Dependecy Injection)
+		\item Reduktion der Datenbankabfragen, da nur noch über Unit of Work commited wird
+		\item Generische Abfragen von Entitäten
+	\end{itemize}
+	Folgende Konventionen ergeben sich aus für das Projekt:
+	\\\begin{itemize}
+		\item Jede Entität implementiert \textit{IObjectState}
+		\item Repository kann über \textit{partial Classes} erweitern werden
+		\item Oder Repository Klassen implementieren \textit{IRepository} und erben von \textit{Repository}
+	\end{itemize}
+
+	\subsection{Unit Tests mit Effort}
+	\href{https://effort.codeplex.com/}{\textit{Effort}} ist ein ADO.Net Provider und erstellt jeweils eine In-Memory Datenbank für das EF. Die temporäre Datenbank ermöglicht uns ein Testen des Codes, ohne Datenbankzugriffe zu mocken.
+	\begin{lstlisting}[language=CSharp, caption=Verwendung Effort für Unit Tests in EffortTest.cs, label=lst:effortunittest, firstnumber=1]
+		DbConnection Connection = DbConnectionFactory.CreateTransient();
+		VoluntaryoContext VoluntaryoContext = new VoluntaryoContext(_Connection);
+    \end{lstlisting}
+    Den einzelnen Unit Tests steht so eine saubere und testbare Datenbank zur Verfügung.
+
 
 \section{VoluntaryO.Service}
 

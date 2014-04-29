@@ -19,7 +19,7 @@
 
 	\section{Komponenten}
 		\subsection{Datenbank}
-		Als Datenbanksystem wird der Microsoft SQL Server 2012 eingesetzt. Auf den Entwicklungsmaschinen setzen wir die in Visual Studio eingebaut LocalDb ein. Die Datenbank wird über SQL Management Studio administriert. Der Grund für die Evaluation des SQL Servers ist die gute Integrierung in Microsoft Umgebungen. Das EF sollte aber einen einfachen Austausch des Datenbank Systems ermöglichen.
+		Als Datenbanksystem wird der Microsoft SQL Server 2012 eingesetzt. Auf den Entwicklungsmaschinen setzen wir die in Visual Studio eingebaut LocalDb ein. Die Datenbank wird über SQL Management Studio administriert. Der Grund für die Evaluation des SQL Servers ist die gute Integration in die Microsoft Umgebungen. Das Entity Framework (EF) sollte aber einen einfachen Austausch des Datenbank Systems ermöglichen.
 		\subsection{Webserver}
 		Als Webserver setzen wir den Internet Information Server (IIS) von Microsoft ein, der uns bestmögliche Integration in unsere Entwicklungsumgebung bieten soll. Auf den Entwicklungsmaschinen ist IIS Express installiert, dass standardmässig mit Visual Studio ausgeliefert wird.
 		\subsection{Client}
@@ -35,10 +35,14 @@
 		\end{figure}
 
 		\subsection{Datenbankzugriff}
-		Der Datenbankzugriff erfolgt direkt über das Entity Framework. Hier werden die Abfragen über LINQ erstellt.
+		Der Datenbankzugriff erfolgt direkt über das Entity Framework (EF). Hier werden die Abfragen über LINQ erstellt.
 
 		\subsection{Webling CSV}
-		Die Schnittstelle auf die Vereinsverwaltung Webling soll uns die Möglichkeit bieten auf Benutzer und Team Informationen zuzugreifen. Die Daten werden in einem CSV-File angeboten, welches mittels eines HTTP-GET in unsere Applikation geladen wird.
+		Die Schnittstelle auf die Vereinsverwaltung Webling soll die Möglichkeit bieten auf Benutzer und Team Informationen zuzugreifen. Die Daten werden in einem CSV-File angeboten, welches mittels eines HTTP-GET in unsere Applikation geladen wird.
+		\\Die Webling Schnittstelle ist hier dokumentiert: 
+		\\\url{http://doku.webling.ch/about/mitgliederverwaltung/#mit_schnittstelle}
 
 		\subsection{Swissunihockey REST}
 		Swissunihockey ist ebenfalls eine externe Schnittstelle, welche die aktuellen Events anbietet. Hier kann auf die Daten über eine REST-API zugegriffen werden.
+		\\Die Swissunihockey REST Schnittstelle ist hier dokumentiert: 
+		\\\url{http://api.swissunihockey.ch/restendpoints}
