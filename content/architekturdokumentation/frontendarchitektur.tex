@@ -1,10 +1,23 @@
 %!TEX root = ../../architekturdokumentation.tex
 \chapter{Frontend Architektur}
-	\section{Klassendiagramm}
-	Dieses Dokument beschreibt die Architektur, die grundlegenden Ideen, Konzepte und Überlegungen für das Projekt VoluntaryO. Es dient den beteiligten Entwicklern die Aspekte des Systems zu definieren und zu verstehen können.
-	
-	
-	\section{Typische Systemoperationen}
-	Nachfolgend werden die relevanten Eigenschaften der Architektur festgehalten. Spezielle Konzepte werden dokumentiert und beschrieben.
+	Die komplette Implementierung des Frontends befindet sich im Projekt Voluntary.Web. Folgend werden die Konzepte beschrieben, die wir zur Darstellung des Frontends verwenden.
 
-	\section{Wichtige Design Aspekte}
+	\section{View Model und Razor}
+	Um die Websiten dynamisch darzustellen nutzen wir die ASP.NET Razor View Engine. Eine Razor-View ist immer mit einer Methode des Controllers verbunden. Das bedeutet auch, dass der Return-Wert der Methode sämtliche Daten mitliefern muss, die später in der View gebraucht werden. Da in einer View häufig mehr als nur ein standard Objekt aus dem Model gebraucht wird, haben viele Views ein Extra Viewmodel. Das bedeutet es wird extra eine Instanz eines speziell auf die View zugeschnittenen Objekt erstellt. Dieses View-Model enthält alle Referenzen auf andere Objekte, die innerhalb der View gebraucht werden.
+	Durch den Einsatz des View-Model haben wir den Vorteil, dass pro View genau definiert ist, welche Daten wir brauchen. Der Zugriff auf das View-Model kann einfach getestet werden.
+	Der Einsatz eines View-Models bietet aber auch einige Nachteile, beispielsweise werden manche Methoden redundant implementiert. Da wir die Implementation der Methoden aber sowieso auf die Service-Schicht abstrahiert haben, birgt dies für uns kein Problem.
+	Da wir nicht durch das Model pro View eingeschränkt werden wollen bietet uns das View-Model den besten Dienst.
+
+	\section{Bootstrap, CSS und JS}
+	Das Front-End Framework, dass wir einsetzen ist Twitter Bootstrap. Zusätzlich verwenden wir ein verändertes CSS-File um nicht den typischen Bootstrap-Look zu erhalten.
+	Zusätzlich setzen wir die Javascript-Library JQuery ein.
+	ASP.NET bietet einen für die Einbindung von CSS- und JS-Files einen Bundle-Konfigurator an. So können CSS-Files oder JS-Files in Bundles gruppiert werden. Per View kann man dann genau definieren welche Bundles aktuell gebraucht werden. ASP.NET bindet einem dann automatisch die entsprechen Files in die HTML-Datei ein.
+	Besonders nützlich ist hier, dass während der Entwicklungs-Phase die Files noch einzeln und noch nicht minifiziert übertragen werden. Sobald man die Applikation aber auf den Server deployed werden die Files automatisch in ein File gerendert und auch minifiziert, was für die Übertragungsgeschwindigkeit wichtig sein kann.
+	Dabei wird pro Bundle ein File ausgeliefert, was besonders für das HTML-Caching wichtig ist.
+
+	\section{AJAX und WebAPI}
+	Unser Ziel ist es, dass unsere Applikation möglichst dynamisch sein soll. Dafür ist der Einsatz von asynchronen Request extrem wichtig. In unserer Applikationen sind mehrere verschiedene Implementationsarten dieses Konzeptes eingesetzt worden. Wenn möglich wurden die direkt von ASP.NET unterstützten Features genutzt. Hier wird über ein sogenanntes Ajax-Form in der Razor-Syntax ein AJAX Befehl konfiguriert. Als Return-Value wird hier ein Partial-View zurückgegeben. Dieser ersetzt dann ein bestehendes Partial-View.
+	Besonders gut ist hier, dass unobstrusive-AJAX eingesetzt wird. Das bedeutet dieser Code würde auch funktionieren, wenn Javascript nicht aktiviert wäre.
+	Für die komplexeren AJAX-Requests, die nicht mehr durch die ASP.NET Boardmittel gelöst werden können, haben wir ein REST Web-Api implementiert. Dieses API ermöglicht es durch AJAX-Request JSON Daten zurückzukriegen und diese dann dynamisch auf der Seite zu implementieren.
+	Das Web-Api ist massgebend für die dynamik der Page.
+	
