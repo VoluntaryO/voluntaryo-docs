@@ -19,9 +19,9 @@
 		\subsubsection{Entity Framework Code-First}
 		Gemäss den Empfehlungen von Microsoft, soll für neue Projekte Code First eingesetzt werden. In diesem Konzept wird das Datenbankmodell direkt durch den C\# Code generiert. Dies bietet uns den Vorteil dass man nur noch mit C\# arbeiten muss.
 
-\section{3-Tier-Architektur}
-	Um eine möglichst hohe Abstraktion unseres Codes zu erhalten, haben wir uns für eine 3-Tier-Architektur entschieden, die unsere Applikation in die drei Schichten Web, Service und DataAccesLayer (Dal) unterteilt. Alle Datenbankspezifischen Operationen sollen im DAL vorgenommen werden. Alle Zugriffe aus dem Web sollen über die Web-Layer behandelt werden. Die Zugriffe auf externe Schnittstellen über den Service-Layer.
-	\includegraphics[width=\textwidth]{content/architekturdokumentation/images/LogischeArchitektur.png}
+		\subsubsection{3-Tier-Architektur}
+		Um eine möglichst hohe Abstraktion unseres Codes zu erhalten, haben wir uns für eine 3-Tier-Architektur entschieden, die unsere Applikation in die drei Schichten Web, Service und DataAccesLayer (Dal) unterteilt. Alle Datenbankspezifischen Operationen sollen im DAL vorgenommen werden. Alle Zugriffe aus dem Web sollen über die Web-Layer behandelt werden. Die Zugriffe auf externe Schnittstellen über den Service-Layer.
+		\includegraphics[width=\textwidth]{content/architekturdokumentation/images/LogischeArchitektur.png}
 
 \section{VoluntaryO.Dal (Data Access Layer)}
     \begin{figure}[h]

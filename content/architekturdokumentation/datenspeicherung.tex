@@ -9,3 +9,6 @@
 	\section{Zugriffsschutz}
 	Auf die Datenbank wird mithilfe eines Technical User Accounts zugegriffen. Nur dieser User hat Zugriff auf die Datenbank. Alle Anfragen aus dem Webserver werden über diesen User abgefertigt. Er hat Schreib- und Leserechte auf alle Daten, kann aber keine Änderungen an dem Datenbankschema vornehmen.
 	Die genauen Berechtigungseinstufungen nach Benutzerrolle der Anwender wird im Applikationscode vorgenommen.
+	\section{Backup/Restore}
+	Die Datenbank wird regelmässig durch ein automatisches Skript in ein SQL-Create-Script-Backup gespeichert. Dies macht den Restore zu einem Punkt in den letzten 24-Stunden möglich.
+	Die Datenbank wird nicht redundant betrieben.
