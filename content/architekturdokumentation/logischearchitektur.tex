@@ -85,6 +85,78 @@ modelBuilder.Entity<Team>()
 
 \section{VoluntaryO.Service}
 
+Dieses Subprojekt dient als Abstraktionsschicht zwischen den Packages aus dem DAL und deren Verwendung im Web Layer und enthält einige Business Logik. Dadurch wird die Logik in den Actions der Controller reduziert und eine höhere Kohäsion erreicht. Die Aufteilung  von Namespaces und Ordner wurde aufgrund der Zugehörigkeit zu den Entitätsklassen im Domainmodell gewählt. Aufgabenspezifische Service-Komponenten wurden ebenfalls in der obersten Hierarchiestufe des Service-Projekts in einem separaten Ordner untergebracht.
+	
+	
+	\subsection{MemberService}	
+	Beim Verwalten und Importieren der Mitglieder muss gelegentlich komplexere Logik ausgeführt werden, die nicht ins Repository im DAL gehört.
+	Eine wichtige Aufgabe des MemberService ist das speichern von importierten Mitgliedern in die Datenbank. Dabei können unterschiedliche Szenarien auftreten:
+	\\\begin{itemize}	
+		\item Es existiert noch kein Mitglied mit dem selben Vornamen, Nachnamen und Geburtsdatum -> Mitglied kann gespeichert werden
+		\item Das Mitglied existiert bereits, es haben sich aber keine Angaben geändert (Telefon, Adresse, E-Mail, Mannschaft)
+		\item Das Mitglied existiert, jedoch wurden einige Angaben verändert\\
+	\end{itemize}
+	
+	\noindent	
+	Im ersten Fall kann das Mitglied einfach gespeichert werden, ebenso im dritten Fall. Sollte aber eine Situation eintreffen, in der ein Mitglied verändert wurde, werden die Änderungen nicht gespeichert. Stattdessen kann über den MemberService auf eine Liste mit diesen Mitgliedern zugegriffen werden. Der Benutzer kann diese Einträge auswählen und explizit überschreiben.
+	
+	
+	\subsection{EventService}
+	Der EventService verbindet den EventController mit dem Event- und HelperTaskRepository. Die Logik zum Hinzufügen von Helfereinsätzen und Mannschaften wird hier implementiert.
+	
+	\subsection{TeamService}
+	Bietet Zugriff auf die Repository-Methoden und stellt Erweiterungspunkt für komplexere Logik dar.
+	
+	\subsection{SkillService}
+	Bietet Zugriff auf die Repository-Methoden und stellt Erweiterungspunkt für komplexere Logik dar.
+	
+	\subsection{HelperTaskService}
+	Der HelperTaskService verbindet den HelperTaskController mit dem HelperTaskRepository. Die Logik zum An- und Abmelden für Helfereinsätze und die Überprüfung von Bedingungen wird hier implementiert.
+		
+	
+	\subsection{Imports}
+	Für das Importieren von Mitgliedern und Events wird jeweils eine eigene Serviceklasse verwendet. Die abstrakte Klasse \textit{Importer} dient dazu als Basis und schreibt die Methode \textit{executeImport} vor.
+	
+
+	
+	\begin{figure}[h!]
+  		\centering
+    	  \includegraphics[width=\textwidth]{content/architekturdokumentation/images/ImportPackageDesign.png}
+		 \caption{Importer-Klassen und deren direkte Collaborators}
+	\end{figure}
+	
+	\subsubsection{MemberImporter}
+	Der MemberImporter implementiert die Methode \textit{executeImport}, welche das importieren von Mitgliedern startet. Um eine höhere Kohäsion und niedrige Kopplung zu erreichen, wurden die Teilaufgaben ausgelagert:
+	\\\begin{itemize}	
+		\item MemberLoader - benutzt die webling.ch Schnittstelle und lädt das CSV
+		\item MemberParser - liest den CSV-String und speichert die Werte in eine Liste von Hashtables
+		\item MemberMapper - gibt Member-Objekte an MemberService zum Speichern weiter\\
+	\end{itemize}
+
+
+
+	\subsubsection{EventImporter}
+	Der EventImporter implementiert ebenfalls die von der abstrakten Basisklasse \textit{Importer} vorgebenen Methode zum Auslösen der Import-Routine. Auch hier wurde die Arbeit in drei Teilaufgaben gegliedert:
+	\\\begin{itemize}	
+		\item EventLoader - lädt die Daten vom Swiss Unihockey REST Service
+		\item EventCreator - liefert Liste mit Event-Objekten
+		\item EventSaver - Speichet die Events in der Datenbank ab\\
+	\end{itemize}
+	
+	\noindent
+	Da Events in der Regel nur einmal pro Saison importiert werden, müssen diese nicht auf Modifikationen überprüft werden.
+	
+	\subsection{MailingService}
+	Um das Versenden von E-Mails zu vereinfachen, kapselt diese Klasse die Vorbereitung und Konfiguration eines \textit{SmtpClient} und einer \textit{MailMessage}. Dabei werden SMTP-Host und -Port, sowie die Credentials aus dem \textit{ConfigurationManager} gelesen.  
+
+\begin{lstlisting}[language=CSharp, caption=Verwendung des MailingService, label=lst:mappingcontextcs, firstnumber=1]
+var mail = new MailingService();
+mail.SendMail("nle@hsr.ch", "nle@hsr.ch", "Test Subject", "Test Message");
+
+
+    \end{lstlisting}
+    
+
 
 
 \section{VoluntaryO.Web}
