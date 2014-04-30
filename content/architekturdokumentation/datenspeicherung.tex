@@ -1,4 +1,11 @@
 %!TEX root = ../../architekturdokumentation.tex
 \chapter{Datenspeicherung}
-
-Die Daten werden in der relationalen Datenbank Microsoft SQL Server 2012 abgelegt. Diese besteht au
+	Für die Persistierung der Daten setzen wir den Microsoft SQL Server 2012 ein. Die Daten werden hier relational gespeichert.
+	Auf die Datenbank wird ausschliesslich über Entity-Framework zugegriffen. Dies bietet einem eine gute Abstraktion zwischen Datenbank und Applikation.
+	Genauere Informationen zur Verbindung zwischen der Applikation und der Datenbank sind im Abschnitt VoluntaryO.DAL zu finden.
+	\section{Transaktionen}
+	Transaktionen werden innerhalb der Repositories genutzt. Für Abfragen werden nie Transaktionen gestartet. Sobald eine Abfrage und ein anschliessendes Update oder Insert kombiniert werden, wird aber eine Transaktion gestartet. Falls hier eine Exception auftritt, wird sofort ein DB-Rollback ausgeführt.
+	Das Isolation Level der Datenbank ist Read Commited, welches eine Schreibsperre für alle zu ändernden Objekte einführt.
+	\section{Zugriffsschutz}
+	Auf die Datenbank wird mithilfe eines Technical User Accounts zugegriffen. Nur dieser User hat Zugriff auf die Datenbank. Alle Anfragen aus dem Webserver werden über diesen User abgefertigt. Er hat Schreib- und Leserechte auf alle Daten, kann aber keine Änderungen an dem Datenbankschema vornehmen.
+	Die genauen Berechtigungseinstufungen nach Benutzerrolle der Anwender wird im Applikationscode vorgenommen.
