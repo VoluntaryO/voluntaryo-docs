@@ -1,36 +1,24 @@
 %!TEX root = ../../architekturdokumentation.tex
 \chapter{Logische Architektur}
-
-
-%!TEX root = ../../architekturdokumentation.tex
-\section{Backend Architektur}
-	Nachfolgend werden wichtige architektonische Klassen und deren Zusammenhang im Backend mittels Klassendiagrammen beschrieben.
-
-	%\subsection{Klassendiagramm}
-	%\includegraphics[width=\textwidth]{content/architekturdokumentation/images/edmx.png}
-	
-	%\subsection{Typische Systemoperationen}
-
-	\subsection{Wichtige Design Aspekte}
-		\subsubsection{Model-View-Controller}
-		Für die Presentationschicht setzen wir MVC ein, da ASP.NET eine gute Unterstützung für dieses Modell bietet. Auf alle Seiten wird mittels Controller zugegriffen. Die Views werden mithilfe der Razorsprache erstellt.
-
-
-		\subsubsection{Entity Framework Code-First}
-		Gemäss den Empfehlungen von Microsoft, soll für neue Projekte Code First eingesetzt werden. In diesem Konzept wird das Datenbankmodell direkt durch den C\# Code generiert. Dies bietet uns den Vorteil dass man nur noch mit C\# arbeiten muss.
-
-		\subsubsection{3-Tier-Architektur}
-		Um eine möglichst hohe Abstraktion unseres Codes zu erhalten, haben wir uns für eine 3-Tier-Architektur entschieden, die unsere Applikation in die drei Schichten Web, Service und DataAccesLayer (Dal) unterteilt. Alle Datenbankspezifischen Operationen sollen im DAL vorgenommen werden. Alle Zugriffe aus dem Web sollen über die Web-Layer behandelt werden. Die Zugriffe auf externe Schnittstellen über den Service-Layer.
+\section{3-Tier-Architektur}
+	Um eine möglichst hohe Abstraktion unseres Codes zu erhalten, haben wir uns für eine 3-Tier-Architektur entschieden, die unsere Applikation in die drei Schichten Web, Service und DataAccesLayer (Dal) unterteilt. Alle Datenbankspezifischen Operationen sollen im DAL vorgenommen werden. Alle Zugriffe aus dem Web sollen über die Web-Layer behandelt werden. Die Zugriffe auf externe Schnittstellen über den Service-Layer.
+    \begin{figure}[h]
+  		\vspace{-5pt}
+    	\centering
 		\includegraphics[width=\textwidth]{content/architekturdokumentation/images/LogischeArchitektur.png}
+  		\vspace{-20pt}
+    	\caption{Logische Architektur}
+	\end{figure}
 
+\newpage
 \section{VoluntaryO.Dal (Data Access Layer)}
     \begin{figure}[h]
   		\vspace{-5pt}
     	\centering
-    	\includegraphics[width=5cm]{content/architekturdokumentation/images/edmx.png}
+    	\includegraphics[width=0.7\textwidth]{content/architekturdokumentation/images/edmx.png}
     	% VOLO-124
 		% \includegraphics[width=\textwidth]{content/architekturdokumentation/images/domain.png}
-  		\vspace{-25pt}
+  		\vspace{-20pt}
     	\caption{Domain in Subsystem VoluntaryO.Dal}
 	\end{figure}
 	Jede Model-Klasse implementiert die Schnittstelle \textit{IObjectState}, resp. leitet von der abstrakten Klasse \textit{Entity} ab.
@@ -60,7 +48,7 @@ modelBuilder.Entity<Team>()
 	\end{itemize}
 
 	\subsection{Repository / Unit of Work Pattern}
-	Generell wird das \href{https://genericunitofworkandrepositories.codeplex.com/}{\textit{Generic Unit of Work \& Repositories Framework}} befolgt um den Code Test- und Wartbar zu halten. Somit bieten sich folgende Vorteile an:
+	Generell wird das \href{https://genericunitofworkandrepositories.codeplex.com/}{\textit{Generic Unit of Work \& Repositories Framework}} befolgt um den Code test- und wartbar zu halten. Somit bieten sich folgende Vorteile an:
 	\\\begin{itemize}	
 		\item Austauschbarkeit ORM
 		\item Testbarkeit
@@ -75,17 +63,26 @@ modelBuilder.Entity<Team>()
 		\item Oder Repository Klassen implementieren \textit{IRepository} und erben von \textit{Repository}
 	\end{itemize}
 
+	\subsubsection{Konventionen für eigene Repository Erweiterungen}
+	\begin{itemize}
+		\item Objekt(-e) abrufen/suchen \textit{Find*}
+		\item Objekt(-e) einfügen \textit{Insert*}
+		\item Objekt ändern \textit{Update*}
+		\item Objekt hinzufügen \textit{Delete*}
+		\item Zuweisung zweier Objekte hinzufügen \textit{Assign*}
+		\item Zuweisung zweier Objekte entfernen \textit{Unassign*}
+	\end{itemize}
+
 	\subsection{Unit Tests mit Effort}
 	\href{https://effort.codeplex.com/}{\textit{Effort}} ist ein ADO.Net Provider und erstellt jeweils eine In-Memory Datenbank für das EF. Die temporäre Datenbank ermöglicht uns ein Testen des Codes, ohne Datenbankzugriffe zu mocken.
 	\begin{lstlisting}[language=CSharp, caption=Verwendung Effort für Unit Tests in EffortTest.cs, label=lst:effortunittest, firstnumber=1]
 		DbConnection Connection = DbConnectionFactory.CreateTransient();
 		VoluntaryoContext VoluntaryoContext = new VoluntaryoContext(_Connection);
     \end{lstlisting}
-    Den einzelnen Unit Tests steht so eine saubere und testbare Datenbank zur Verfügung.
+    Den einzelnen Unit Tests steht so eine saubere und testbare Datenbank zur Verfügung. Jeder UnitTest erbt von der Abstrakten Klasse \textit{EffortTest}.
 
-
+\newpage
 \section{VoluntaryO.Service}
-
 Dieses Subprojekt dient als Abstraktionsschicht zwischen den Packages aus dem DAL und deren Verwendung im Web Layer und enthält einige Business Logik. Dadurch wird die Logik in den Actions der Controller reduziert und eine höhere Kohäsion erreicht. Die Aufteilung  von Namespaces und Ordner wurde aufgrund der Zugehörigkeit zu den Entitätsklassen im Domainmodell gewählt. Aufgabenspezifische Service-Komponenten wurden ebenfalls in der obersten Hierarchiestufe des Service-Projekts in einem separaten Ordner untergebracht.
 	
 	
@@ -118,12 +115,12 @@ Dieses Subprojekt dient als Abstraktionsschicht zwischen den Packages aus dem DA
 	\subsection{Imports}
 	Für das Importieren von Mitgliedern und Events wird jeweils eine eigene Serviceklasse verwendet. Die abstrakte Klasse \textit{Importer} dient dazu als Basis und schreibt die Methode \textit{executeImport} vor.
 	
-
-	
-	\begin{figure}[h!]
-  		\centering
-    	  \includegraphics[width=\textwidth]{content/architekturdokumentation/images/ImportPackageDesign.png}
-		 \caption{Importer-Klassen und deren direkte Collaborators}
+    \begin{figure}[h]
+  		\vspace{-5pt}
+    	\centering
+    	 \includegraphics[width=0.9\textwidth]{content/architekturdokumentation/images/ImportPackageDesign.png}
+  		\vspace{-25pt}
+		\caption{Importer-Klassen und deren direkte Collaborators}
 	\end{figure}
 	
 	\subsubsection{MemberImporter}
@@ -150,11 +147,9 @@ Dieses Subprojekt dient als Abstraktionsschicht zwischen den Packages aus dem DA
 	\subsection{MailingService}
 	Um das Versenden von E-Mails zu vereinfachen, kapselt diese Klasse die Vorbereitung und Konfiguration eines \textit{SmtpClient} und einer \textit{MailMessage}. Dabei werden SMTP-Host und -Port, sowie die Credentials aus dem \textit{ConfigurationManager} gelesen.  
 
-\begin{lstlisting}[language=CSharp, caption=Verwendung des MailingService, label=lst:mappingcontextcs, firstnumber=1]
+	\begin{lstlisting}[language=CSharp, caption=Verwendung des MailingService, label=lst:mailingservice, firstnumber=1]
 var mail = new MailingService();
 mail.SendMail("nle@hsr.ch", "nle@hsr.ch", "Test Subject", "Test Message");
-
-
     \end{lstlisting}
     
 
@@ -163,6 +158,30 @@ mail.SendMail("nle@hsr.ch", "nle@hsr.ch", "Test Subject", "Test Message");
 \section{VoluntaryO.Web}
 
 	Die komplette Implementierung des Frontends befindet sich im Projekt Voluntary.Web. Folgend werden die Konzepte beschrieben, die wir zur Darstellung des Frontends verwenden.
+
+	\subsection{Dependency Injection}
+	Die Idee hinter Dependency Injection und allgemein Inversion-of-Control, ist die Anwendung des sogenannten Hollywood Prinzips: \"Don’t call us, we call you!\". 
+	\\Als Dependency Injection Container wird \href{http://unity.codeplex.com/}{Unity} verwendet. Der Controller gibt in seinem Konstruktor an, welche Interfaces benötigt werden. \textit{Unity} wird diese Abhängigkeiten dann zur Laufzeit zur Verfügung stellen.
+	\begin{lstlisting}[language=CSharp, caption=UnityConfig.cs, label=lst:unityconfig, firstnumber=1]
+container.RegisterType<IDataContextAsync, VoluntaryoContext>(new PerRequestLifetimeManager(), new InjectionConstructor())
+    .RegisterType<IUnitOfWork, UnitOfWork>(new PerRequestLifetimeManager())
+    .RegisterType<IUnitOfWorkAsync, UnitOfWork>(new PerRequestLifetimeManager())
+    .RegisterType<IEventRepository, EventRepository>()
+    .RegisterType<IHelperTaskRepository, HelperTaskRepository>()
+    .RegisterType<IRepository<HelperTaskType>, Repository<HelperTaskType>>()
+    .RegisterType<IMemberRepository, MemberRepository>()
+    .RegisterType<ITeamRepository, TeamRepository>()
+    .RegisterType<IRepositoryAsync<Skill>, Repository<Skill>>()
+    .RegisterType<IEventService, EventService>()
+    .RegisterType<IHelperTaskService, HelperTaskService>()
+    .RegisterType<ISkillService, SkillService>()
+    .RegisterType<IMemberService, MemberService>()
+    .RegisterType<ITeamService, TeamService>();
+    \end{lstlisting}
+    Der \textit{PerRequestLifetimeManager} hält die Instanz für den gesamten HTTP-Request. Somit erhält jeder Request ein eigener \textit{Context} und eine eigene \textit{Unit of Work}.
+
+	\subsection{Model-View-Controller}
+	Für die Presentationschicht setzen wir MVC ein, da ASP.NET eine gute Unterstützung für dieses Modell bietet. Auf alle Seiten wird mittels Controller zugegriffen. Die Views werden mithilfe der Razorsprache erstellt.
 
 	\subsection{View Model und Razor}
 	Um die Websiten dynamisch darzustellen nutzen wir die ASP.NET Razor View Engine. Eine Razor-View ist immer mit einer Methode des Controllers verbunden. Das bedeutet auch, dass der Return-Wert der Methode sämtliche Daten mitliefern muss, die später in der View gebraucht werden. Da in einer View häufig mehr als nur ein standard Objekt aus dem Model gebraucht wird, haben viele Views ein Extra Viewmodel. Das bedeutet es wird extra eine Instanz eines speziell auf die View zugeschnittenen Objekt erstellt. Dieses View-Model enthält alle Referenzen auf andere Objekte, die innerhalb der View gebraucht werden.

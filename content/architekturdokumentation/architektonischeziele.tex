@@ -45,26 +45,26 @@
 		    \caption{Verwendete Tools}
 		\end{table}
 
+	\section{Komponenten}	
 		\begin{table}[H]
 		    \tablestyle
 		    \tablealtcolored
-		    \begin{tabularx}{\textwidth}{p{3cm} X}
+		    \begin{tabularx}{\textwidth}{p{3cm} X r}
 		        \tableheadcolor
 		            \tablehead Bezeichnung &
-		            \tablehead Erläuterung \tabularnewline
+		            \tablehead Erläuterung &
+		            \tablehead Version \tabularnewline
 		        \tablebody
-		        \textit{Entity Framework (6.0)} &
-		            Abstraktion des Datenbankzugriffs
-		            \tabularnewline
-		        Generic Unit of Work \& Repositories Framework (3.3) &
-		            Ermöglicht generische Repositories mit zugehörigen Service-Klassen und eine Unit of Work. Beschreibung siehe folgend.
-		            \tabularnewline
-		        \textit{Effort (1.0.0-beta5)} &
-		            ADO.Net Provider welcher eine In-Memory (temporär!) Datenbank für das EF zur Verfügung stellt. Dies wird für die Unit Tests genutzt.
-		            \tabularnewline
-		        \textit{log4net (1.2.13)} &
-		            Zum loggen von Meldungen aus der Appliktation heraus
-		            \tabularnewline
+			        \textit{Entity Framework} & Abstraktion des Datenbankzugriffs & 6.1 \tabularnewline
+			        \textit{Generic Unit of Work \& Repositories Framework)} &  Ermöglicht generische Repositories mit zugehörigen Service-Klassen und eine Unit of Work. Beschreibung in Kaptiel \textit{VoluntaryO.Dal}. & 3.3 \tabularnewline
+			        \textit{Effort} & ADO.Net Provider welcher eine In-Memory (temporär!) Datenbank für das EF zur Verfügung stellt. Dies wird für die Unit Tests genutzt. & 1.0.0-beta5 \tabularnewline
+			        \textit{log4net} & Zum loggen von Meldungen aus der Appliktation heraus & 1.2.13 \tabularnewline
+			        \textit{Unity} & \textit{Dependency Injection} Container für VoluntaryO.Web & 3.5 \tabularnewline
+			        \textit{Json.NET} & Parsen der Webschnittstellen in VoluntaryO.Service & 6.0.0 \tabularnewline
+			        \textit{Bootstrap} & HTML/CSS Framework für Responsive Design in VoluntaryO.Web & 3.1 \tabularnewline
+			        \textit{jQuery} & JavaScript Bibliothek für VoluntaryO.Web & 1.10.2 \tabularnewline
+			        \textit{jQuery Choosen} & Benutzerfreundliche Auswahlboxen VoluntaryO.Web & 1.1.0 \tabularnewline
+			        \textit{Bootstrap Datetimepicker} & Benutzerfreundliche Datumsauswahl VoluntaryO.Web & 3.0.0 \tabularnewline
 		        \tableend
 		    \end{tabularx}
 		    \caption{Verwendete Komponenten}
