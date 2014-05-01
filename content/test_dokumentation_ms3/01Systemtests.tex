@@ -170,7 +170,9 @@
     	\end{tabularx}
    		\caption{Testprotokoll: UC03}
 	\end{table}
-	\section{Construction C1}
+	
+	
+\section{Construction C1}
 	\subsection{Voraussetzungen}
 	Die Voraussetzungen für den Systemtest in der Construction C1 Phase sind die selben Voraussetzungen wie in den vorherigen Phasen.
 	\subsection{Vorbereitungen}
@@ -240,20 +242,22 @@
     	\end{tabularx}
    		\caption{UC03: Helfereinsatz planen}
 	\end{table}
+	
+	
 		\subsection{Testprotokoll UC03}
 	\begin{table}[H]
     	\tablestyle
     	\tablealtcolored
     	\begin{tabularx}{\textwidth}{l X l}
         	\tablebody
-          	\textbf{1} & Es können keine neuen Helfereinsatztypen übers Web erstellt werden & \textcolor{red}{NOK}
+          	\textbf{1} & Es können keine neuen Helfereinsatztypen übers Web erstellt werden & \textcolor{orange}{NOK}
             \tabularnewline
         	\textbf{2} & In den Events können nur bestehende Helfereinsätze hinzugefügt werden. Noch können keine neuen Helfereinsatztypen erstellt werden. & \textcolor{orange}{OK}
             \tabularnewline
             \textbf{3} & Alle Informationen zum Helfereinsatz konnten abgerufen werden. & \textcolor{green}{OK} 
             \tabularnewline
             \textbf{4} & 
-            Benutzer können jedoch noch nicht nachträglich hinzugefügt oder entfernt werden. 					\textcolor{orange}{Fehler beim Aufrufen von "Helfereinsatz bearbeiten" z.B. http://localhost:52498/HelperTask/Edit/...} & \textcolor{red}{NOK} 
+            Benutzer können jedoch noch nicht nachträglich hinzugefügt oder entfernt werden. \textcolor{orange}{Fehler beim Aufrufen von "Helfereinsatz bearbeiten" z.B. http://localhost:52498/HelperTask/Edit/...} & \textcolor{orange}{NOK} 
             \tabularnewline
            	\tableend
     	\end{tabularx}
