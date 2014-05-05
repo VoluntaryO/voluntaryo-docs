@@ -223,6 +223,9 @@ public ActionResult Edit(string id, ManageMessageId? Message = null) {}
 @if (User.IsInRole("Admin") || User.IsInRole("Admin"))
 			\end{lstlisting}
 
+		\subsubsection{Passwortverschlüsselung}
+		Das Passwort wird als Hash (\textit{HMACSHA256}) in der Datenbank abgespeichert. Das Projekt verwendet die Standardimplementation von Asp.Net Idenity mit \textit{PasswordHasher}. Der \textit{PasswordHasher} verwendet die \href{http://de.wikipedia.org/wiki/PBKDF2}{\textit{PBKDF2}} um den Hash inkl. einen Saltwert zu strecken. Die Streckung wird 5000 mal durchgeführt. Diese Verkettung erschwert es, per Brute-Force-Methode aus dem Schlüssel auf das ursprüngliche Passwort zu schliessen.
+
 
 	\subsection{Bootstrap, CSS und JS}
 		Das Front-End Framework, dass wir einsetzen ist Twitter Bootstrap. Zusätzlich verwenden wir ein verändertes CSS-File um nicht den typischen Bootstrap-Look zu erhalten.
