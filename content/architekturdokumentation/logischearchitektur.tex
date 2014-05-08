@@ -339,28 +339,156 @@
 
 
 \section{VoluntaryO.Web}
-	Die komplette Implementierung des Frontends befindet sich im Projekt Voluntary.Web. Folgend werden die Konzepte beschrieben, die wir zur Darstellung des Frontends verwenden.
+	Die komplette Implementierung des Frontends befindet sich im Projekt Voluntary.Web. Folgend wird beschrieben, wie VoluntaryO.Web aufgebaut ist und welche Konzepte verwendet wurden um die Darstellung des Frontends zu erreichen.
 
-	\subsection{Dependency Injection}
-		Die Idee hinter Dependency Injection und allgemein Inversion-of-Control, ist die Anwendung des sogenannten Hollywood Prinzips: \"Don’t call us, we call you!\". 
-		\\Als Dependency Injection Container wird \href{http://unity.codeplex.com/}{Unity} verwendet. Der Controller gibt in seinem Konstruktor an, welche Interfaces benötigt werden. \textit{Unity} wird diese Abhängigkeiten dann zur Laufzeit zur Verfügung stellen.
-		\begin{lstlisting}[language=CSharp, caption=UnityConfig.cs, label=lst:unityconfig, firstnumber=1]
-	container.RegisterType<IDataContextAsync, VoluntaryoContext>(new PerRequestLifetimeManager(), new InjectionConstructor())
-	    .RegisterType<IUnitOfWork, UnitOfWork>(new PerRequestLifetimeManager())
-	    .RegisterType<IUnitOfWorkAsync, UnitOfWork>(new PerRequestLifetimeManager())
-	    .RegisterType<IEventRepository, EventRepository>()
-	    .RegisterType<IHelperTaskRepository, HelperTaskRepository>()
-	    .RegisterType<IRepository<HelperTaskType>, Repository<HelperTaskType>>()
-	    .RegisterType<IMemberRepository, MemberRepository>()
-	    .RegisterType<ITeamRepository, TeamRepository>()
-	    .RegisterType<IRepositoryAsync<Skill>, Repository<Skill>>()
-	    .RegisterType<IEventService, EventService>()
-	    .RegisterType<IHelperTaskService, HelperTaskService>()
-	    .RegisterType<ISkillService, SkillService>()
-	    .RegisterType<IMemberService, MemberService>()
-	    .RegisterType<ITeamService, TeamService>();
-	    \end{lstlisting}
-	    Der \textit{PerRequestLifetimeManager} hält die Instanz für den gesamten HTTP-Request. Somit erhält jeder Request ein eigener \textit{Context} und eine eigene \textit{Unit of Work}.
+	\subsection{Projektaufbau}
+		VoluntaryO.Web ist ein Projekt innerhalb der Solution. Der Projektaufbau wird in der Reihenfolge der Ordner beschrieben.
+		\begin{figure}[h]
+	  		\vspace{-5pt}
+	    	\centering
+	    	 \includegraphics[width=0.9\textwidth]{content/architekturdokumentation/images/web-1-Projektaufbau.png}
+	  		\vspace{-25pt}
+			\caption{Projektaufbau VoluntaryO.Web}
+		\end{figure}
+		
+		\subsubsection{References}
+			Das Projekt hat Referenzen auf VoluntaryO.Dal und VoluntarO.Service um auf die Datenpersistenz zugreifen zu können. Andere Referenzen ergeben sich automatisch durch den Einsatz von Entity Framework, und ASP.NET MVC.
+		
+		\subsubsection{AppStart}
+			Hier werden wichtige Konfigurationen für ASP.NET vorgenommen. Besonders herauszuheben ist hier BundleConfig.cs. Unser Projekt bietet sechs verschiedene Bundles an. Jedes Bundle besteht aus mehreren CSS oder JS Files, die innerhalb eines Bundles in einem minimierten File an den Client ausgeliefert werden (Nur in Realese-Deploy). Dies bietet den Vorteil, dass während der Entwicklung der JS-Code gedebuggt werden kann und später eine möglichst hohe Effizien erreichbar ist. Ausserdem bietet Bundle-Config eine zentrale Managementlösung für JS- und CSS-Files.
+			Im AppStart wird ausserdem die Konfiguration der Dependency Injection vorgenommen.
+			Die Idee hinter Dependency Injection und allgemein Inversion-of-Control, ist die Anwendung des sogenannten Hollywood Prinzips: \"Don’t call us, we call you!\". 
+			\\Als Dependency Injection Container wird \href{http://unity.codeplex.com/}{Unity} verwendet. Der Controller gibt in seinem Konstruktor an, welche Interfaces benötigt werden. \textit{Unity} wird diese Abhängigkeiten dann zur Laufzeit zur Verfügung stellen.
+			\begin{lstlisting}[language=CSharp, caption=UnityConfig.cs, label=lst:unityconfig, firstnumber=1]
+			container.RegisterType<IDataContextAsync, VoluntaryoContext>(new PerRequestLifetimeManager(), new InjectionConstructor())
+		    .RegisterType<IUnitOfWork, UnitOfWork>(new PerRequestLifetimeManager())
+		    .RegisterType<IUnitOfWorkAsync, UnitOfWork>(new PerRequestLifetimeManager())
+		    .RegisterType<IEventRepository, EventRepository>()
+		    .RegisterType<IHelperTaskRepository, HelperTaskRepository>()
+		    .RegisterType<IRepository<HelperTaskType>, Repository<HelperTaskType>>()
+		    .RegisterType<IMemberRepository, MemberRepository>()
+		    .RegisterType<ITeamRepository, TeamRepository>()
+		    .RegisterType<IRepositoryAsync<Skill>, Repository<Skill>>()
+		    .RegisterType<IEventService, EventService>()
+		    .RegisterType<IHelperTaskService, HelperTaskService>()
+		    .RegisterType<ISkillService, SkillService>()
+		    .RegisterType<IMemberService, MemberService>()
+		    .RegisterType<ITeamService, TeamService>();
+		    \end{lstlisting}
+		    Der \textit{PerRequestLifetimeManager} hält die Instanz für den gesamten HTTP-Request. Somit erhält jeder Request ein eigener \textit{Context} und eine eigene \textit{Unit of Work}.
+		    Zuletzt wird in AppStart noch die Konfiguration des Routings zum Web-API vorgenommen.
+
+		\subsubsection{Content}
+			Der Ordner Content enthält alle Bilder und CSS-Files, die für das Projekt benötigt werden. Diese sind unter anderem Bootstrap, Chosen und spezifische CSS –Files für VoluntaryO.
+
+		\subsubsection{Controllers}
+			Die Controller sind ein essentieller Teil des MVC-Patterns (Model-View-Controller), das wir durch ASP.NET verwenden.
+
+			\begin{figure}[h]
+		  		\vspace{-5pt}
+		    	\centering
+		    	 \includegraphics[width=0.9\textwidth]{content/architekturdokumentation/images/web-2-Controllers.png}
+		  		\vspace{-25pt}
+				\caption{PControllers}
+			\end{figure}
+
+			Sobald im Client eine URL mit folgendem Schema aufgerufen wird:
+			/{controller}/{methode}
+			Wird innerhalb des Controllers mit dem jeweiligen Name die jeweilige Methode aufgerufen. Für jede Methode innerhalb eines Controllers gibt es eine gleichnamige View im Ordner Views.
+			In jeder Methode innerhalb des Controllers wird festgelegt, welche Rollen darauf zugreifen können.
+
+			\begin{lstlisting}[language=CSharp, caption=EventController.cs, label=lst:Details firstnumber=1]
+			// GET: /Event/Details/5
+	        [Authorize(Roles = "Admin,Planer,Member")]
+	        public ActionResult Details(int? id)
+	        {
+	            if (id == null)
+	            {
+	                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+	            }
+	            var e = _eventService.Find((int) id);
+	            if (e == null)
+	            {
+	                return HttpNotFound();
+	            }
+	            var model = new EventDetailViewModel(e, _teamService.GetAllTeams().ToList());
+	            return View(model);
+	        }
+			\end{lstlisting}
+
+			Speziell ist hier noch der Folder API. Er wird von verschiedenen Views benutzt um von der Client-Side über AJAX asynchrone Requests auf die Applikation auszuführen. Die Methoden sind hier nach den verschiedenen HTTP-Request-Codes benannt (GET, POST, DELETE usw.)
+
+		\subsubsection{Scripts}
+			Innerhalb des Folders Scripts sind alle JS-Files abgelegt. Grundsätzlich sind diese in Bootstrap, Chosen, FullCalender, JQuery und spezifische VoluntaryO-Scripts zu unterteilen. Die Scripts werden durch die zuvor beschriebenen Bundles in der View angezeigt.
+
+		\subsubsection{View Models}
+
+			\begin{figure}[h]
+		  		\vspace{-5pt}
+		    	\centering
+		    	 \includegraphics[width=0.9\textwidth]{content/architekturdokumentation/images/web-3-ViewModels.png}
+		  		\vspace{-25pt}
+				\caption{ViewModels}
+			\end{figure}
+
+			Um die Websiten dynamisch darzustellen nutzen wir die ASP.NET Razor View Engine. Eine Razor-View ist immer mit einer Methode des Controllers verbunden. Das bedeutet auch, dass der Return-Wert der Methode sämtliche Daten mitliefern muss, die später in der View gebraucht werden. Da in einer View häufig mehr als nur ein standard Objekt aus dem Model gebraucht wird, haben viele Views ein Extra Viewmodel. Das bedeutet es wird extra eine Instanz eines speziell auf die View zugeschnittenen Objekt erstellt. Dieses View-Model enthält alle Referenzen auf andere Objekte, die innerhalb der View gebraucht werden. Durch den Einsatz des View-Model haben wir den Vorteil, dass pro View genau definiert ist, welche Daten wir brauchen. Der Zugriff auf das View-Model kann einfach getestet werden. Der Einsatz eines View-Models bietet aber auch einige Nachteile, beispielsweise werden manche Methoden redundant implementiert. Da wir die Implementation der Methoden aber sowieso auf die Service-Schicht abstrahiert haben, birgt dies für uns kein Problem. Da wir nicht durch das Model pro View eingeschränkt werden wollen bietet uns das View-Model den besten Dienst.
+
+		\subsubsection{Views}
+
+			\begin{figure}[h]
+		  		\vspace{-5pt}
+		    	\centering
+		    	 \includegraphics[width=0.9\textwidth]{content/architekturdokumentation/images/web-4-Views.png}
+		  		\vspace{-25pt}
+				\caption{Views}
+			\end{figure}
+
+			Alle Controller besitzen ein entsprechendes Pendant im Ordner Views. Hier sind alle .cshtml Files abgelegt, die vom Client angezeigt werden können.
+			Detailliert sieht man das innerhalb des Ordners Event. Für die Events gibt es eine Ansicht in Listenstruktur (Index), eine Detail-Ansicht (Details) und eine Erstell und Editier-Funktion (Create \& Edit). Alle Files die mit einem Underscore beginnen (\_Events) sind Partial-Views die innerhalb anderer Views wiederverwendet werden können.
+
+			In den Views ist auch der Javascript-Code zu finden, welcher die AJAX-Befehle ausführt. Ein Beispiel:
+
+			\begin{lstlisting}[language=javascript, caption=text/javascript, label=lst:AJAX Example firstnumber=1]
+			$(document).ready(function() {
+	            $("#team-selection").chosen({
+	                allow_single_deselect: true
+	            });
+
+	            $(".remove-helperTask").confirmation({
+	                onConfirm: function(e, element) {
+	                    console.log($(element));
+	                    e.preventDefault();
+	                    $.ajax({
+	                        type: 'DELETE',
+	                        url: '/api/helperTasks/' + $("#helperTaskId").val(),
+	                        success: function(data) {
+	                            getHelperTasks($('#calendar'));
+	                            $("#taskdetailform")[0].reset();
+	                        },
+	                        error: function(data) {
+	                            console.log(data);
+	                        }
+	                    });
+	                }
+	            });
+	        });
+			\end{lstlisting}
+
+	\subsection{Controllers}
+		Folgend werden die vier wichtigsten Controller und der REST-API-Controller detailliert beschrieben
+		\subsubsection{HomeController}
+		asdf
+		\subsubsection{EventController}
+		adsf
+		\subsubsection{HelperTaskController}
+		asd
+		\subsubsection{AccountController}
+		asd
+		\subsubsection{ApiController}
+		asdf
+
+
+
 
 	\subsection{Model-View-Controller}
 		Für die Presentationschicht setzen wir MVC ein, da ASP.NET eine gute Unterstützung für dieses Modell bietet. Auf alle Seiten wird mittels Controller zugegriffen. Die Views werden mithilfe der Razorsprache erstellt.
