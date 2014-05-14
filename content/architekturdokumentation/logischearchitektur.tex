@@ -384,10 +384,6 @@
 		\subsubsection{Controllers}
 			Die Controller sind ein essentieller Teil des MVC-Patterns (Model-View-Controller), das wir durch ASP.NET verwenden.
 
-
-
-
-
 			\begin{figure}[H]
 		    	\centering
 		    	 \includegraphics[width=0.5\textwidth]{content/architekturdokumentation/images/web-2-Controllers.png}
@@ -864,7 +860,6 @@
 		Wir verwenden ASP.NET Identity in Version 2.0 für die Authentifizierung und Authentisierung. Folgende benutzerrelevanten Funktionen werden vom Projekt unterstützt:
 		\\\begin{itemize}	
 			\item Login / Logout
-			\item Passwort vergessen
 			\item Benutzer anlegen, importieren, bearbeiten und löschen (Admin)
 			\item Rollenzuweisung
 		\end{itemize}
@@ -890,3 +885,15 @@ public ActionResult Edit(string id, ManageMessageId? Message = null) {}
 
 		\subsubsection{Passwortverschlüsselung}
 		Das Passwort wird als Hash (\textit{HMACSHA256}) in der Datenbank abgespeichert. Das Projekt verwendet die Standardimplementation von Asp.Net Idenity mit \textit{PasswordHasher}. Der \textit{PasswordHasher} verwendet die \href{http://de.wikipedia.org/wiki/PBKDF2}{\textit{PBKDF2}} um den Hash inkl. einen Saltwert zu strecken. Die Streckung wird 5000 mal durchgeführt. Diese Verkettung erschwert es, per Brute-Force-Methode aus dem Schlüssel auf das ursprüngliche Passwort zu schliessen.
+		\\ Das Passwort hat folgende Anforderungen und ist in \textit{MemberRepository.cs} konfiguriert:
+
+		\begin{lstlisting}[language=CSharp, caption=MemberRepository.cs, label=lst:memberrepositorypassword, firstnumber=1]
+UserManager.PasswordValidator = new PasswordValidator
+{
+    RequiredLength = 8,
+    RequireNonLetterOrDigit = false,
+    RequireDigit = true,
+    RequireLowercase = true,
+    RequireUppercase = true
+};
+		\end{lstlisting}
