@@ -343,14 +343,14 @@
 
 	\subsection{Projektaufbau}
 		VoluntaryO.Web ist ein Projekt innerhalb der Solution. Der Projektaufbau wird in der Reihenfolge der Ordner beschrieben.
-		\begin{figure}[h]
-	  		\vspace{-5pt}
+
+		\begin{figure}[H]
 	    	\centering
-	    	 \includegraphics[width=0.9\textwidth]{content/architekturdokumentation/images/web-1-Projektaufbau.png}
-	  		\vspace{-25pt}
+	    	 \includegraphics[width=0.3\textwidth]{content/architekturdokumentation/images/web-1-Projektaufbau.png}
+	  		\vspace{-10pt}
 			\caption{Projektaufbau VoluntaryO.Web}
 		\end{figure}
-		
+
 		\subsubsection{References}
 			Das Projekt hat Referenzen auf VoluntaryO.Dal und VoluntarO.Service um auf die Datenpersistenz zugreifen zu können. Andere Referenzen ergeben sich automatisch durch den Einsatz von Entity Framework, und ASP.NET MVC.
 		
@@ -384,12 +384,15 @@
 		\subsubsection{Controllers}
 			Die Controller sind ein essentieller Teil des MVC-Patterns (Model-View-Controller), das wir durch ASP.NET verwenden.
 
-			\begin{figure}[h]
-		  		\vspace{-5pt}
+
+
+
+
+			\begin{figure}[H]
 		    	\centering
-		    	 \includegraphics[width=0.9\textwidth]{content/architekturdokumentation/images/web-2-Controllers.png}
-		  		\vspace{-25pt}
-				\caption{PControllers}
+		    	 \includegraphics[width=0.5\textwidth]{content/architekturdokumentation/images/web-2-Controllers.png}
+		  		\vspace{-5pt}
+				\caption{Controllers}
 			\end{figure}
 
 			Sobald im Client eine URL mit folgendem Schema aufgerufen wird:
@@ -423,11 +426,9 @@
 
 		\subsubsection{View Models}
 
-			\begin{figure}[h]
-		  		\vspace{-5pt}
+			\begin{figure}[H]
 		    	\centering
-		    	 \includegraphics[width=0.9\textwidth]{content/architekturdokumentation/images/web-3-ViewModels.png}
-		  		\vspace{-25pt}
+		    	 \includegraphics[width=0.5\textwidth]{content/architekturdokumentation/images/web-3-ViewModels.png}
 				\caption{ViewModels}
 			\end{figure}
 
@@ -435,11 +436,10 @@
 
 		\subsubsection{Views}
 
-			\begin{figure}[h]
-		  		\vspace{-5pt}
+			\begin{figure}[H]
 		    	\centering
-		    	 \includegraphics[width=0.9\textwidth]{content/architekturdokumentation/images/web-4-Views.png}
-		  		\vspace{-25pt}
+		    	 \includegraphics[width=0.3\textwidth]{content/architekturdokumentation/images/web-4-Views.png}
+		  		\vspace{-10pt}
 				\caption{Views}
 			\end{figure}
 
@@ -477,27 +477,388 @@
 	\subsection{Controllers}
 		Folgend werden die vier wichtigsten Controller und der REST-API-Controller detailliert beschrieben
 		\subsubsection{HomeController}
-		asdf
+			
+			\begin{table}[H]
+		        \tablestyle
+		        \tablealtcolored
+		        \begin{tabularx}{\textwidth}{p{3cm} p{0.8cm} p{6cm} X p{1.2cm}}
+		        \tableheadcolor
+		            \tablehead Adresse & 
+		            \tablehead HTTP &
+		            \tablehead Beschreibung &
+		            \tablehead Parameter &
+		            \tablehead Rechte \\  
+		        \tablebody
+		        	/Home/Index &
+		        	GET &
+		        	Gibt alle offenen Helfereinsätze eines Members zurück &
+		        	- &
+		        	Admin, Planer, Member
+		        	\tabularnewline
+		        \tableend
+		        \end{tabularx} 
+		    \end{table}
+
 		\subsubsection{EventController}
-		adsf
+
+			\begin{table}[H]
+		        \tablestyle
+		        \tablealtcolored
+		        \begin{tabularx}{\textwidth}{p{3cm} p{0.8cm} p{6cm} X p{1.2cm}}
+		        \tableheadcolor
+		            \tablehead Adresse & 
+		            \tablehead HTTP &
+		            \tablehead Beschreibung &
+		            \tablehead Parameter &
+		            \tablehead Rechte \\  
+		        \tablebody
+		        	/Event/Index &
+		        	GET &
+		        	Gibt alle Events zurück. Möglichkeit für Filterung und Sortierung. Falls über AJAX angefragt wird Partial View zurückggeben. &
+		        	string sortOrder
+					string searchString &
+		        	Admin, Planer, Member
+		        	\tabularnewline
+
+		        	/Event/Details/{id} &
+		        	GET &
+		        	Gibt details eines Events als EventDetailViewModel zurück &
+		        	int? Id &
+		        	Admin, Planer, Member
+		        	\tabularnewline
+
+		        	/Event/DeleteTeam &
+		        	GET &
+		        	Entfernt Teamzuweisung aus einem spezifischen Event &
+		        	int teamId, int eventId &
+		        	Planer
+		        	\tabularnewline
+
+		        	/Event/AddTeam &
+		        	GET &
+		        	Fügt Teamzuweisung zu einem spezifischen Event hinzu &
+		        	int teamId, int eventId &
+		        	Planer
+		        	\tabularnewline
+
+		        	/Event/Edit/{id} &
+		        	GET &
+		        	Gibt zu bearbeitenden Event zurück. Zusätzlich eine Liste mit allen vorhandenen Teams um in View Auswahlliste anzubieten. Return als EditEventViewModel &
+		        	int? Id &
+		        	Planer
+		        	\tabularnewline
+
+		        	/Event/Edit/ &
+		        	POST &
+		        	Speichert die Änderungen die an Event vorgenommen wurden in DB. Falls ModelState nicht Valid ist, wird Edit-View erneut angezeigt. &
+		        	EditEventViewModel model &
+		        	Planer
+		        	\tabularnewline
+
+		        	/Event/Create &
+		        	GET &
+		        	Zeigt Create View &
+		        	- &
+		        	Planer
+		        	\tabularnewline
+
+		        	/Event/Create &
+		        	POST &
+		        	Erstellt Event mit den angegeben Daten &
+		        	Event @event &
+		        	Planer
+		        	\tabularnewline
+
+		        \tableend
+		        \end{tabularx} 
+		    \end{table}
+
 		\subsubsection{HelperTaskController}
-		asd
+		
+		\begin{table}[H]
+		        \tablestyle
+		        \tablealtcolored
+		        \begin{tabularx}{\textwidth}{p{3cm} p{0.8cm} p{6cm} X p{1.2cm}}
+		        \tableheadcolor
+		            \tablehead Adresse & 
+		            \tablehead HTTP &
+		            \tablehead Beschreibung &
+		            \tablehead Parameter &
+		            \tablehead Rechte \\  
+		        \tablebody
+		        	/HelperTask/Index &
+		        	GET &
+		        	Gibt alle noch bevorstehenden und abgeschlossene Helfereinsätze eines Members zurück &
+		        	- &
+		        	Admin, Planer, Member
+		        	\tabularnewline
+
+		        	/HelperTask/Create &
+		        	GET &
+		        	Gibt View zurück als AddHelperTaskViewModel mit der EventId und allen HelperTaskTypes &
+		        	int eventId &
+		        	Planer
+		        	\tabularnewline
+
+		        	/HelperTask/Create &
+		        	POST &
+		        	Speichert den neu erstellten HelperTask in DB, ausser wenn ModelState nicht Valid ist. &
+		        	AddHelperTaskViewModel helperTaskViewModel &
+		        	Planer
+		        	\tabularnewline
+
+		        	/HelperTask/Details/{id} &
+		        	GET &
+		        	Gibt Helpertask als HelperTaskDetailsViewModel zurück &
+		        	int? id &
+		        	Admin, Planer, Member
+		        	\tabularnewline
+
+		        	/HelperTask/Edit/{id} &
+		        	GET &
+		        	Gibt HelperTask durch EditHelperTaskViewModel zurück mit einer Liste aller HelperTaskTypes und aller Member. &
+		        	int? id &
+		        	Planer
+		        	\tabularnewline
+
+		        	/HelperTask/Edit &
+		        	POST &
+		        	Speichert die Änderungen am HelperTask in DB ausser ModelState ist nicht Valid &
+		        	EditHelperTaskViewModel model &
+		        	Planer
+		        	\tabularnewline
+
+		        	/HelperTask/Delete/{id} &
+		        	GET &
+		        	Löscht Helfereinsatz aus DB &
+		        	int? id &
+		        	Planer
+		        	\tabularnewline
+
+		        	/HelperTask/SignUp/{id} &
+		        	GET &
+		        	Fügt ein Member einem Helfereinsatz hinzu. Ergebnis wird als JSON zurückgeliefert, da diese Anfrage über AJAX erstellt wird. Hinzufügen wird als Transaktion ausgeführt. Bei Fehlern wird ein Rollback ausgeführt und Error-Message zurückgegeben. &
+		        	int? id &
+		        	Planer, Member
+		        	\tabularnewline
+
+		        	/HelperTask/SignOff{id} &
+		        	GET &
+		        	Entfernt einen Member von einem Helfereinsatz. Ergebnis wird als JSON zurückgeliefert. Bei Exception wird Rollback von Transaktion ausgeführt &
+		        	int? id &
+		        	Planer, Member
+		        	\tabularnewline
+
+		        \tableend
+		        \end{tabularx} 
+		    \end{table}
+
 		\subsubsection{AccountController}
-		asd
+			\begin{table}[H]
+		        \tablestyle
+		        \tablealtcolored
+		        \begin{tabularx}{\textwidth}{p{3cm} p{0.8cm} p{6cm} X p{1.2cm}}
+		        \tableheadcolor
+		            \tablehead Adresse & 
+		            \tablehead HTTP &
+		            \tablehead Beschreibung &
+		            \tablehead Parameter &
+		            \tablehead Rechte \\  
+		        \tablebody
+		        	/Account/Login &
+		        	GET &
+		        	Gibt Login View zurück &
+		        	string returnUrl &
+		        	Anonymous
+		        	\tabularnewline
+
+		        	/Account/Login &
+		        	POST &
+		        	Meldet User über Identity an &
+		        	LoginViewModel model, string returnUrl &
+		        	Anonymous
+		        	\tabularnewline
+
+		        	/Account/LogOff &
+		        	POST &
+		        	Meldet User ab &
+		        	- &
+		        	-
+		        	\tabularnewline
+
+		        	/Account/Manage &
+		        	GET &
+		        	Gibt View zur Änderung von Benutzersettings zurück &
+		        	ManageMessageId? Message &
+		        	-
+		        	\tabularnewline
+
+		        	/Account/Manage &
+		        	POST &
+		        	Speichert Änderungen an Benutzer, falls ModelState gültig ist &
+		        	ChangeMemberPasswordViewModel model &
+		        	-
+		        	\tabularnewline
+
+		        	/Account/Index &
+		        	GET &
+		        	Zeigt View aller Benutzer an &
+		        	- &
+		        	Admin
+		        	\tabularnewline
+
+		        	/Account/Edit/{userid} &
+		        	GET &
+		        	Zeigt View zur Bearbeitung eines Users an. Gibt Ergebnis als EditMemberViewModel zurück und zusätzlich eine Liste aller Teams und Skills um die Auswahl in der View anzuzeigen &
+		        	string id, ManageMessageId? Message = null &
+		        	Admin
+		        	\tabularnewline
+
+		        	/Account/Edit/ &
+		        	POST &
+		        	Speichert Änderungen an Benutzer, falls ModelState gültig ist &
+		        	EditMemberViewModel model &
+		        	Admin
+		        	\tabularnewline
+
+		        	/Account/Create &
+		        	GET &
+		        	Gibt EditMemberViewModel zurück mit Liste aller Teams und Skills m die Auswahl in der View anzuzeigen. Der Member ist hier allerding null &
+		        	ManageMessageId? Message = null &
+		        	Admin
+		        	\tabularnewline
+
+		        	/Account/Create &
+		        	POST &
+		        	Speichert neuen User ausser ModelState ist nicht gültig &
+		        	EditMemberViewModel model &
+		        	Admin
+		        	\tabularnewline
+
+		        	/Account/MemberRoles/{userId} &
+		        	GET &
+		        	Zeigt View zur Bearbeitung der Rolle eines Members. Gibt MemberRolesViewModel zurück mit Liste aller verfügbaren Rollen. &
+		        	string id &
+		        	Admin
+		        	\tabularnewline
+
+		        	/Account/MemberRoles &
+		        	POST &
+		        	Speichert die neuen Memberrollen ausser ModelState ist nicht valid &
+		        	MemberRolesViewModel model &
+		        	Admin
+		        	\tabularnewline
+
+		        \tableend
+		        \end{tabularx} 
+		    \end{table}
+
 		\subsubsection{ApiController}
-		asdf
+			
+			\begin{table}[H]
+		        \tablestyle
+		        \tablealtcolored
+		        \begin{tabularx}{\textwidth}{p{3cm} p{0.8cm} p{6cm} X p{1.2cm}}
+		        \tableheadcolor
+		            \tablehead Adresse & 
+		            \tablehead HTTP &
+		            \tablehead Beschreibung &
+		            \tablehead Parameter &
+		            \tablehead Rechte \\  
+		        \tablebody
+		        	Api/Events/{id} &
+		        	GET &
+		        	Gibt Event mit ID zurück &
+		        	int id &
+		        	Admin, Planer, Member
+		        	\tabularnewline
 
+		        	Api/Events/{id} &
+		        	DELETE &
+		        	Löscht Event mit ID &
+		        	int id &
+		        	Planer
+		        	\tabularnewline
 
+		        	Api/HelperTasks &
+		        	POST &
+		        	Erstellt oder bearbeitet einen Helfereinsatz &
+		        	HeleprTaskDetailsViewModel helperTaskViewModel &
+		        	Planer
+		        	\tabularnewline
 
+		        	Api/HelperTasks/{id} &
+		        	DELETE &
+		        	Löscht einen Helfereinsatz mit der angegebenen ID &
+		        	int? Id &
+		        	Planer
+		        	\tabularnewline
 
-	\subsection{Model-View-Controller}
-		Für die Presentationschicht setzen wir MVC ein, da ASP.NET eine gute Unterstützung für dieses Modell bietet. Auf alle Seiten wird mittels Controller zugegriffen. Die Views werden mithilfe der Razorsprache erstellt.
+		        	Api/HelperTaskTypes/ &
+		        	GET &
+		        	Gibt alle HelperTaskTypes zurück &
+		        	- &
+		        	Admin, Planer, Member
+		        	\tabularnewline
 
-	\subsection{View Model und Razor}
-		Um die Websiten dynamisch darzustellen nutzen wir die ASP.NET Razor View Engine. Eine Razor-View ist immer mit einer Methode des Controllers verbunden. Das bedeutet auch, dass der Return-Wert der Methode sämtliche Daten mitliefern muss, die später in der View gebraucht werden. Da in einer View häufig mehr als nur ein standard Objekt aus dem Model gebraucht wird, haben viele Views ein Extra Viewmodel. Das bedeutet es wird extra eine Instanz eines speziell auf die View zugeschnittenen Objekt erstellt. Dieses View-Model enthält alle Referenzen auf andere Objekte, die innerhalb der View gebraucht werden.
-		Durch den Einsatz des View-Model haben wir den Vorteil, dass pro View genau definiert ist, welche Daten wir brauchen. Der Zugriff auf das View-Model kann einfach getestet werden.
-		Der Einsatz eines View-Models bietet aber auch einige Nachteile, beispielsweise werden manche Methoden redundant implementiert. Da wir die Implementation der Methoden aber sowieso auf die Service-Schicht abstrahiert haben, birgt dies für uns kein Problem.
-		Da wir nicht durch das Model pro View eingeschränkt werden wollen bietet uns das View-Model den besten Dienst.
+		        	Api/HelperTaskTypes/{id} &
+		        	GET &
+		        	Gibt bestimmten HelperTaskType zurück &
+		        	int id &
+		        	Admin, Planer, Member
+		        	\tabularnewline
+
+		        	Api/HelperTaskTypes &
+		        	POST &
+		        	Editiert einen HelperTaskType oder erstellt ihn falls keine Id angegeben &
+		        	HelperTaskTypeEditViewModel helperTaskTypeEditViewModel &
+		        	Planer
+		        	\tabularnewline
+
+		        	Api/HelperTaskTypes/{id} &
+		        	DELETE &
+		        	Löscht angegeben HelperTaskType &
+		        	int id &
+		        	Planer
+		        	\tabularnewline
+
+		        	Api/Members/{username} &
+		        	DELETE &
+		        	Löscht angegeben User &
+		        	string username &
+		        	Admin
+		        	\tabularnewline
+
+		        	Api/Skills &
+		        	GET &
+		        	Gibt alle Skills zurück &
+		        	- &
+		        	Admin, Planer, Member
+		        	\tabularnewline
+
+		        	Api/Skills/{id} &
+		        	GET &
+		        	Gibt angegeben Skill zurück &
+		        	int id &
+		        	Admin, Planer, Member
+		        	\tabularnewline
+
+		        	Api/Skills &
+		        	POST &
+		        	Erstellt oder ändert Skills &
+		        	SkillEditViewModel skillEditViewModel &
+		        	Admin
+		        	\tabularnewline
+
+		        	Api/Skills &
+		        	DELETE &
+		        	Löscht angegeben Skill &
+		        	int id &
+		        	Admin
+		        	\tabularnewline
+		        \tableend
+		        \end{tabularx} 
+		    \end{table}
 
 	\subsection{ASP.NET Identity (Authentifizierung und Authentisierung)}
 		Wir verwenden ASP.NET Identity in Version 2.0 für die Authentifizierung und Authentisierung. Folgende benutzerrelevanten Funktionen werden vom Projekt unterstützt:
@@ -529,17 +890,3 @@ public ActionResult Edit(string id, ManageMessageId? Message = null) {}
 
 		\subsubsection{Passwortverschlüsselung}
 		Das Passwort wird als Hash (\textit{HMACSHA256}) in der Datenbank abgespeichert. Das Projekt verwendet die Standardimplementation von Asp.Net Idenity mit \textit{PasswordHasher}. Der \textit{PasswordHasher} verwendet die \href{http://de.wikipedia.org/wiki/PBKDF2}{\textit{PBKDF2}} um den Hash inkl. einen Saltwert zu strecken. Die Streckung wird 5000 mal durchgeführt. Diese Verkettung erschwert es, per Brute-Force-Methode aus dem Schlüssel auf das ursprüngliche Passwort zu schliessen.
-
-
-	\subsection{Bootstrap, CSS und JS}
-		Das Front-End Framework, dass wir einsetzen ist Twitter Bootstrap. Zusätzlich verwenden wir ein verändertes CSS-File um nicht den typischen Bootstrap-Look zu erhalten.
-		Zusätzlich setzen wir die Javascript-Library JQuery ein.
-		ASP.NET bietet einen für die Einbindung von CSS- und JS-Files einen Bundle-Konfigurator an. So können CSS-Files oder JS-Files in Bundles gruppiert werden. Per View kann man dann genau definieren welche Bundles aktuell gebraucht werden. ASP.NET bindet einem dann automatisch die entsprechen Files in die HTML-Datei ein.
-		Besonders nützlich ist hier, dass während der Entwicklungs-Phase die Files noch einzeln und noch nicht minifiziert übertragen werden. Sobald man die Applikation aber auf den Server deployed werden die Files automatisch in ein File gerendert und auch minifiziert, was für die Übertragungsgeschwindigkeit wichtig sein kann.
-		Dabei wird pro Bundle ein File ausgeliefert, was besonders für das HTML-Caching wichtig ist.
-
-	\subsection{AJAX und WebAPI}
-		Unser Ziel ist es, dass unsere Applikation möglichst dynamisch sein soll. Dafür ist der Einsatz von asynchronen Request extrem wichtig. In unserer Applikationen sind mehrere verschiedene Implementationsarten dieses Konzeptes eingesetzt worden. Wenn möglich wurden die direkt von ASP.NET unterstützten Features genutzt. Hier wird über ein sogenanntes Ajax-Form in der Razor-Syntax ein AJAX Befehl konfiguriert. Als Return-Value wird hier ein Partial-View zurückgegeben. Dieser ersetzt dann ein bestehendes Partial-View.
-		Besonders gut ist hier, dass unobstrusive-AJAX eingesetzt wird. Das bedeutet dieser Code würde auch funktionieren, wenn Javascript nicht aktiviert wäre.
-		Für die komplexeren AJAX-Requests, die nicht mehr durch die ASP.NET Boardmittel gelöst werden können, haben wir ein REST Web-Api implementiert. Dieses API ermöglicht es durch AJAX-Request JSON Daten zurückzukriegen und diese dann dynamisch auf der Seite zu implementieren.
-		Das Web-Api ist massgebend für die dynamik der Page.
