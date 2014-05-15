@@ -2,11 +2,10 @@
 \chapter{Logische Architektur}
 \section{3-Tier-Architektur}
 	Um eine möglichst hohe Abstraktion unseres Codes zu erhalten, haben wir uns für eine 3-Tier-Architektur entschieden, die unsere Applikation in die drei Schichten Web, Service und DataAccesLayer (Dal) unterteilt. Alle Datenbankspezifischen Operationen sollen im DAL vorgenommen werden. Die Zugriffe auf externe Schnittstellen über den Service-Layer. Alle Zugriffe aus dem Web sollen über die Web-Layer behandelt werden. 
-    \begin{figure}[h]
-  		\vspace{-5pt}
+    \begin{figure}[H]
     	\centering
-		\includegraphics[width=\textwidth]{content/architekturdokumentation/images/LogischeArchitektur.png}
-  		\vspace{-20pt}
+		\includegraphics[width=0.4\textwidth]{content/architekturdokumentation/images/LogischeArchitektur_plain.png}
+  		\vspace{-10pt}
     	\caption{Logische Architektur}
 	\end{figure}
 
@@ -15,7 +14,7 @@
     \begin{figure}[h]
   		\vspace{-5pt}
     	\centering
-    	\includegraphics[width=0.7\textwidth]{content/architekturdokumentation/images/VoluntaryO_Dal_Overview.png}
+    	\includegraphics[width=0.9\textwidth]{content/architekturdokumentation/images/VoluntaryO_Dal_Overview.png}
   		\vspace{-20pt}
     	\caption{Klassen in VoluntaryO.Dal}
 	\end{figure}
