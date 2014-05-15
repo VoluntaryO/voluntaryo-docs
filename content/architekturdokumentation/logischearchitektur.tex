@@ -207,9 +207,14 @@
            void AssignEventAndHelperTask(Event e, int helperTaskId) &
            Ordnet dem Event einen weiteren Helfereinsatz zu. \tabularnewline
            
+                     
+           
            bool Contains(Event e) &
            Überprüft, ob ein Event bereits im Repository existiert. \tabularnewline
+
 			
+            IEnumerable<Event> FindEventsBySearchStringWithSortOrder(string searchString, string sortOrder) &
+            Findet Events, die im Namen, Datum, Ort oder Team mit dem übergebenen Such-String übereinstimmen. Zusätzlich kann die Sortierung gesteuert werden. Erlaubte Werte sind ``Location'',  ``location\_desc'', ``Deadline'', ``deadline\_desc'', ``Name'', ``name\_desc'' und ``date\_desc''. Die Standardsortierung wird anhand von ``Date'' vorgenommen. \tabularnewline 
 				
 			         
         \tableend
