@@ -1,0 +1,57 @@
+%!TEX root = ../../schlussbericht.tex
+\chapter{Allgemeiner Erfahrungsbericht}
+	\section{Qualität}
+	\subsection{Projektgrösse}
+	\begin{table}[H]
+        \tablestyle
+        \tablealtcolored
+        \begin{tabularx}{\textwidth}{X r r}
+        \tableheadcolor
+            \tablehead Project & 
+            \tablehead Maintainability Index & 
+            \tablehead Lines of Code \\
+        \tablebody
+            VoluintaryO.Dal & 86 & 742 \\
+            VoluntaryO.Dal.Test & 69 & 220 \\
+            VoluntaryO.Service & 89 & 541 \\
+            VoluntaryO.Service.Test & 79 & 400 \\
+            VoluntaryO.Mail & 93 & 3 \\
+            VoluntaryO.Web & 82 & 1105 \\
+            {\bf Total} & \O  83 & 3011  
+            \tabularnewline
+        \tableend
+        \end{tabularx} 
+    \end{table}
+    \subsection{Code Reviews}
+Die wöchentlichen Code Reviews stellten sich für uns als sehr wichtig heraus. Es war für uns nämlich sehr schwer das Know-How aller Teammitglieder auf einem Level zu halten. Besonders wichtig war es die Gedanken und Motivationen hinter den einzelnen Verfahren zu erklären, damit falls von anderen darauf zugegriffen werden muss, diese auch das Verständnis dafür haben.
+
+Beim Code-Review konnte auch frühzeitig eingegriffen werden, falls einzelne Arbeitspakete nicht so implementiert wurden, wie in den Anforderungen vorgesehen.
+    
+    \subsection{Frameworks und Patterns}
+Innerhalb unseres Projekts haben wir einige Patterns und Frameworks eingesetzt, die uns halfen, die Code Qualität zu erhöhen. Besonders herauszuheben sind hier das Unit of Work, Repository und Dependency Injection. Hier benutzen wir verschiedene Frameworks um dies Patterns generisch zu implementieren. Am wichtigsten für die hohe Abstraktion die wir erhalten haben waren die Layers die wir erstellt hatten.
+    
+    \subsection{Visual Studio, ReSharper und dotCover}
+    Während der Entwicklung half uns der ReSharper sehr unseren Codestyle auf einen Nenner zu kriegen. Die nützlichen Tipps und Hilfen, die der ReSharper bietet, brachten uns automatisch auf einen Nenner bezüglich Coding Styles.
+    
+    Die Analysen und Metriken, die uns Visual Studio und IntelliJ’s dotCover boten, halfen uns sicherzustellen, dass eine gute Testcoverage erreicht wurde und dass die Komplexität genug tief blieb.
+    
+    \subsection{Test Coverage}
+Das Projekt umfasst 55 Unit Tests. Wir haben uns entschieden von der Web-Schicht keine Unit-Tests zu erstellen. Die Controller zur Darstellung der Seite werden nicht durch Unit-Tests getestet. Dafür haben wir System-Tests. Der Grund dafür ist, dass der Aufwand für Unit-Tests hier extrem hoch wäre und der Nutzen ziemlich klein.	\\
+	\begin{table}Hh]
+        \tablestyle
+        \tablealtcolored
+        \begin{tabularx}{\textwidth}{X r r r}
+        \tableheadcolor
+            \tablehead Layer & 
+            \tablehead Test-Coverage & 
+            \tablehead Lines of Code &
+            \tablehead Lines of Code (Tests)\\
+        \tablebody
+            VoluintaryO.Dal & 95.23 \% & 742 & 220\\
+            VoluntaryO.Service & 79.14 \% & 541 & 400\\
+            VoluntaryO.Web & 0.00 \% & 1105 & 0\\
+            {\bf Total} &  58.12 \%
+            \tabularnewline
+        \tableend
+        \end{tabularx} 
+    \end{table}
