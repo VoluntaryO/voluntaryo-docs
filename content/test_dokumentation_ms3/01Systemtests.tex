@@ -1,5 +1,6 @@
 \chapter{Systemtests}
 	\section{Elaboration E2}
+	
 	\subsection{Voraussetzungen}
 	Die Voraussetzungen für den Systemtest in der Elaboration Phase 2, sind eine bestehende Datenbank und eine Weboberfläche die mit der Datenbank interagiert. Die Tabellen sind inklusive Zwischentabellen noch statisch generiert.
 	\subsection{Vorbereitungen}
@@ -17,7 +18,7 @@
         	\tablebody
           	\textbf{1} & Der Benutzer kann den Helfereinsatz auswählen und sich anmelden. & Der Helfereinsatz ist ersichtlich und kann ausgewählt werden. Wird also im Dropdown angezeigt.
             \tabularnewline
-        	\textbf{2} & Das System überprüft ob die Sperrfrist schon überschritten wurde & Die Überprüfung der Sperrfrist wird nicht funktionieren. Die Implementierung ist erst später eingeplant. 
+        	\textbf{2} & Das System überprüft auf Überlappungen verschiedener Helfereinsätze & Die Implementierung ist erst später eingeplant. 
             \tabularnewline
             \textbf{3} & Der Benutzer kann sich von einem angemeldeten Einsatz wieder abmelden. & Das Abmelden erfolgt durch das erfolgreiche Löschen des Eintrages aus der MemberTaskMapping Tabelle. Der Eintrag kann durch die Implementation der CRUD-Funktionen gelöscht werden.   
             \tabularnewline
@@ -115,7 +116,7 @@
         	\tablebody
           	\textbf{1} & Der Benutzer kann den Helfereinsatz auswählen und sich anmelden. & Der Helfereinsatz ist ersichtlich und kann ausgewählt werden. Wird also im Dropdown angezeigt.
             \tabularnewline
-        	\textbf{2} & Das System überprüft ob die Sperrfrist schon überschritten wurde & Die Überprüfung der Sperrfrist wird nicht funktionieren. Die Implementierung ist erst später eingeplant. 
+        	\textbf{2} & Das System überprüft auf Überlappungen verschiedener Helfereinsätzee & Die Implementierung ist erst später eingeplant. 
             \tabularnewline
             \textbf{3} & Der Benutzer kann sich von einem angemeldeten Einsatz wieder abmelden. & Das Abmelden erfolgt durch das erfolgreiche Löschen des Eintrages aus der MemberTaskMapping Tabelle. Der Eintrag kann durch die Implementation der CRUD-Funktionen gelöscht werden.   
             \tabularnewline
@@ -221,7 +222,7 @@
         	\tablebody
           	\textbf{1} & Der Benutzer kann den Helfereinsatz auswählen und sich anmelden. & Die Helfereinsätze zum jeweiligen Event sind aufgelistet.
             \tabularnewline
-        	\textbf{2} & Das System überprüft ob die Sperrfrist schon überschritten wurde & \textcolor{green}{Die Implementation steht noch an} 
+        	\textbf{2} & Das System überprüft auf Überlappungen verschiedener Helfereinsätze & Die Implementation steht noch an.
             \tabularnewline
             \textbf{3} & Der Benutzer kann sich von einem angemeldeten Einsatz wieder abmelden. & Der Benutzer kann nun durch den "Austragen"-Button sich vom Helfereinsatz abmelden.  
             \tabularnewline
@@ -278,8 +279,6 @@
             \tabularnewline
         	\textbf{2} & Der Helfereinsatz kann einem bestehenden Event zugewiesen werden & Der Helfereinsatz wird in den Eventdetails angezeigt.
             \tabularnewline
-            \textbf{3} & Detailierte Informationen zum Helfereinsatz aufrufen & Detailansicht des Helfereinsatzes gibt Informationen über Eventname, Helfereinsatztyp, Helfereinsatzkommentar, Start-/Endzeit, maximale Anzahl Personen, Mindestanforderungen und die dafür angemeldeten Benutzer.   
-            \tabularnewline
             \textbf{4} & Helfereinsatz kann bearbeitet werden & Die detailierten Informationen des Helfereinsatzes können bearbeitet werden.
             \tabularnewline
            	\tableend
@@ -288,7 +287,7 @@
 	\end{table}
 	
 	
-		\subsection{Testprotokoll UC03}
+	\subsection{Testprotokoll UC03}
 	\begin{table}[H]
     	\tablestyle
     	\tablealtcolored
@@ -304,10 +303,167 @@
             \tabularnewline
             \textbf{3} & Alle Informationen zum Helfereinsatz konnten abgerufen werden. & \textcolor{green}{OK} 
             \tabularnewline
-            \textbf{4} & 
-            Benutzer können jedoch noch nicht nachträglich hinzugefügt oder entfernt werden. \textcolor{orange}{Fehler beim Aufrufen von "Helfereinsatz bearbeiten" } & \textcolor{orange}{NOK} 
+            \textbf{4} & Benutzer können jedoch noch nicht nachträglich hinzugefügt oder entfernt werden. & \textcolor{orange}{NOK} 
             \tabularnewline
            	\tableend
     	\end{tabularx}
    		\caption{Testprotokoll: UC03}
 	\end{table}
+	
+	\section{Construction C3}
+	\subsection{Voraussetzungen}
+	Die Voraussetzungen für den Systemtest in der Construction C1 Phase sind die selben Voraussetzungen wie in den vorherigen Phasen.
+	\subsection{Vorbereitungen}
+	In dieser Phase ist unser Projekt fertig implementiert und alle Tests sollten bestanden werden.
+	\subsection{Use Case 01: Für Helfereinsatz anmelden}
+		\begin{table}[H]
+    	\tablestyle
+    	\tablealtcolored
+    	\begin{tabularx}{\textwidth}{l X X}
+    		%\tableheadcolor
+    		%	\tablehead Nr &
+            %	\tablehead Use Case & 
+           	%	\tablehead Erwartetes Verhalten \\
+        	\tablebody
+          	\textbf{1} & Der Benutzer kann den Helfereinsatz auswählen und sich anmelden. & Die Helfereinsätze zum jeweiligen Event sind aufgelistet.
+            \tabularnewline
+        	\textbf{2} & Das System überprüft auf zeitliche Überlappungen verschiedener Helfereinsätze & \textcolor{green}{Die Implementation steht noch an} 
+            \tabularnewline
+            \textbf{3} & Der Benutzer kann sich von einem angemeldeten Einsatz wieder abmelden. & Der Benutzer kann nun durch den "Austragen"-Button sich vom Helfereinsatz abmelden.  
+            \tabularnewline
+            \textbf{4} & Das System überprüft, ob die Anforderungen für den Helfereinsatz erfüllt werden & Überprüfung der Skills wird nun durchgeführt und die Einsätze werden nur zugewiesen, wenn alle Anforderungen erfüllt werden können.  
+              \tabularnewline
+            \textbf{5} & Angemeldete Helfereinsätze können angezeigt werden & Die eingenen Helfereinsätze können angezeigt und verwaltet werden.
+              \tabularnewline
+            \textbf{6} & (optional) Die angemeldeten Helfereinsätze können exportiert werden & Diese optionale Funktion wird nicht mehr implementiert. 
+            \tabularnewline
+           	\tableend
+    	\end{tabularx}
+   		\caption{UC01: Für Helfereinsatz an-/abmelden}
+	\end{table}
+	
+	\subsection{Testprotokoll UC01}
+	\begin{table}[H]
+    	\tablestyle
+    	\tablealtcolored
+    	\begin{tabularx}{\textwidth}{l X l}
+    		%\tableheadcolor
+    		%	\tablehead Nr &
+            %	\tablehead Verhalten & 
+           	%	\tablehead Ergebnis \\
+        	\tablebody
+          	\textbf{1} & Eintragen in dieser Übersicht sowie in der Detailansicht möglich & \textcolor{green}{OK}
+            \tabularnewline
+        	\textbf{2} & Überprüfung findet noch nicht statt, Verhalten gemäss Vorhersage.  Unit Tests dafür sind jedoch schon vorhanden. & \textcolor{green}{OK}
+            \tabularnewline
+            \textbf{3} & Der Benutzer meldet sich durch Drücken des "Austragen"-Buttons vom jeweiligen Helfereinsatz ab & \textcolor{green}{OK} 
+            \tabularnewline
+            \textbf{4} & Die Anmeldung wird nur ausgeführt, wenn alle Anforderungen vom Mitglied erfüllt werden können.  & \textcolor{green}{OK} 
+                        \tabularnewline
+            \textbf{5} & Die View "Meine Helfereinsätze" wurde nun erstellt und zeigt alle angemeldeten Helfereinästze an & \textcolor{green}{OK} 
+                        \tabularnewline
+            \textbf{6} & Funktion wird nicht mehr Implementiert. & \textcolor{green}{OK} 
+            \tabularnewline
+           	\tableend
+    	\end{tabularx}
+   		\caption{Testprotokoll: UC01}
+	\end{table}
+	
+	
+	\subsection{Use Case 03: Helfereinsatz planen}
+		\begin{table}[H]
+    	\tablestyle
+    	\tablealtcolored
+    	\begin{tabularx}{\textwidth}{l X X}
+    		%\tableheadcolor
+    		%	\tablehead Nr &
+            %	\tablehead Use Case & 
+           	%	\tablehead Erwartetes Verhalten \\
+        	\tablebody
+          	\textbf{1} & Ein neuer Helfereinsatz kann erstellt werden & Informationen können zum Helfereinsatz können eingetragen werden.
+            \tabularnewline
+        	\textbf{2} & Der Helfereinsatz kann einem bestehenden Event zugewiesen werden & Der Helfereinsatz wird in den Eventdetails angezeigt.
+            \tabularnewline
+            \textbf{3} & Detailierte Informationen zum Helfereinsatz aufrufen & Detailansicht des Helfereinsatzes gibt Informationen über Eventname, Helfereinsatztyp, Helfereinsatzkommentar, Start-/Endzeit, maximale Anzahl Personen, Mindestanforderungen und die dafür angemeldeten Benutzer.   
+            \tabularnewline
+            \textbf{4} & Helfereinsatz kann bearbeitet werden & Die detailierten Informationen des Helfereinsatzes können bearbeitet werden.
+            \tabularnewline
+           	\tableend
+    	\end{tabularx}
+   		\caption{UC03: Helfereinsatz planen}
+	\end{table}
+	
+	
+	\subsection{Testprotokoll UC03}
+	\begin{table}[H]
+    	\tablestyle
+    	\tablealtcolored
+    	\begin{tabularx}{\textwidth}{l X l}
+    		%\tableheadcolor
+    		%	\tablehead Nr &
+            %	\tablehead Verhalten & 
+           	%	\tablehead Ergebnis \\
+        	\tablebody
+          	\textbf{1} & Helfereinsätze können nun erstellt werden & \textcolor{green}{OK}
+            \tabularnewline
+        	\textbf{2} & Der Helfereinsatz wird im Event erstellt, somit muss keine zusätzliche Zuweisung erfolgen & \textcolor{green}{OK}
+            \tabularnewline
+            \textbf{3} & Alle Informationen zum Helfereinsatz konnten abgerufen werden. & \textcolor{green}{OK} 
+            \tabularnewline
+            \textbf{4} & Die Bearbeitung der Informationen eines Helfereinsatzes funktioniert planungsgemäss & \textcolor{green}{OK} 
+            \tabularnewline
+           	\tableend
+    	\end{tabularx}
+   		\caption{Testprotokoll: UC03}
+	\end{table}	
+	
+	
+	\subsection{Use Case 04: Stammdaten verwalten}
+		\begin{table}[H]
+    	\tablestyle
+    	\tablealtcolored
+    	\begin{tabularx}{\textwidth}{l X X}
+    		%\tableheadcolor
+    		%	\tablehead Nr &
+            %	\tablehead Use Case & 
+           	%	\tablehead Erwartetes Verhalten \\
+        	\tablebody
+          	\textbf{1} & Der Admin kann Benutzer verwalten (CRUD) & Der Admin kann Benutzerinformationen anzeigen, bearbeiten, erstellen oder löschen
+            \tabularnewline
+        	\textbf{2} & Benutzerpasswörter können vom Admin geändert werden. & Benutzerpasswort kann zurückgesetzt werden, diese werden verschlüsselt abgelegt.
+            \tabularnewline
+            \textbf{3} & Der Admin kann die Rolle des Benutzers setzen & Der Benutzer bekommt je nach Rolle unterschiedliche Views in der Webapplikation.
+            \tabularnewline
+           	\tableend
+    	\end{tabularx}
+   		\caption{UC04: Stammdaten verwalten}
+	\end{table}
+	
+	
+	\subsection{Testprotokoll UC04}
+	\begin{table}[H]
+    	\tablestyle
+    	\tablealtcolored
+    	\begin{tabularx}{\textwidth}{l X l}
+    		%\tableheadcolor
+    		%	\tablehead Nr &
+            %	\tablehead Verhalten & 
+           	%	\tablehead Ergebnis \\
+        	\tablebody
+          	\textbf{1a} & Admin kann neue Benutzer erstellen & \textcolor{green}{OK}
+            \tabularnewline
+            \textbf{1b} & Admin kann Benutzer(-informationen) anzeigen & \textcolor{green}{OK}
+            \tabularnewline
+            \textbf{1c} & Admin kann Benutzer(-informationen) bearbeiten & \textcolor{green}{OK}
+            \tabularnewline
+            \textbf{1d} & Admin kann Benutzer löschen & \textcolor{green}{OK}
+            \tabularnewline
+        	\textbf{2} & Neu gesetzte Passwörter funktionieren bei erneuter Anmeldung & \textcolor{green}{OK}
+            \tabularnewline
+            \textbf{3} & Je nach Rolle werden verschiedene Views für den Benutzer gerendert. & \textcolor{green}{OK} 
+            \tabularnewline
+           	\tableend
+    	\end{tabularx}
+   		\caption{Testprotokoll: UC03}
+	\end{table}
+		
